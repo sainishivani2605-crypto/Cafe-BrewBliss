@@ -1,0 +1,61 @@
+
+
+.Add-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.Add{
+    display: flex;
+    width: 100%;
+
+}
+.add{
+    margin-left: 240px;
+    margin-top: 60px;
+    width: calc(100% - 260px);
+    background-color: pink;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+#ad{
+    text-align: center;
+    color: rgb(102, 19, 19);
+    margin-bottom: 30px;
+}
+
+.item-card{
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.item-card .A{
+    display: block;
+    margin: 15px 0 8px;
+    color: #4b2e2e;
+    font-weight: 600;
+}
+
+.item-card .B{
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.item-card button{
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 80px;
+  background-color:#4b2e2e;
+  border: 1px;
+  border-radius: 10px;
+  color: honeydew;
+
+
+}
+.item-card button:hover{
+    transform: scale(1.1);
+    background-color: chocolate;
+    
+}

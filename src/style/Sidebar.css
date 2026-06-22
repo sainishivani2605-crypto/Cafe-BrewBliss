@@ -1,0 +1,54 @@
+.sidebar{
+    width:200px;
+    min-height:100vh;
+    background:rgb(245, 214, 214);
+    color:white;
+    margin: 7px;
+    border-radius: 10px;
+    position: fixed;
+
+}
+.sidebar h2{
+    text-align: center;
+    color: rgb(99, 52, 52);
+}
+
+.cupimg{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-left: 80px;
+}
+.sidebar ul{
+    margin: 30px;
+
+}
+.sidebar ul li{
+    list-style: none;
+    gap: 20px;
+    color: rgb(99, 52, 52);
+    margin-top: 20px;
+}
+.sidebar ul li:hover{
+    cursor: pointer;
+
+}
+.sidebar a{
+    text-decoration: none;
+    color: rgb(102, 19, 19);
+    border-radius: 5px;
+    width: 30px;
+    padding: 5px 20px;
+}
+.sidebar a:hover{
+    background-color: rgb(102, 19, 19);
+    color:white;
+    width: 30px;
+}
+#logout{
+    color: rgb(67, 24, 24);
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 100px;
+}

@@ -1,0 +1,133 @@
+
+.review-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.Review{
+    display: flex;
+    overflow: hidden;
+    margin-left: 220px;
+    margin-top: 10px;
+}
+.review{
+    display: flex;
+}
+.review img{
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.searchh{
+    margin-left: 600px;
+}
+#managereview{
+            color: rgb(102, 19, 19);
+            margin-top: 10px;
+
+}
+.filter-buttons{
+    box-shadow: 0 0 5px pink;
+    width: 100%;
+    height: 70px;
+    background-color: rgb(245, 214, 214);
+
+
+}
+.filter-buttons button{
+    margin-left: 39px;
+    width: 100px;
+    height: 30px;
+    align-content: center;
+    justify-content: center;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px;
+    box-shadow: 0 0 5px yellowgreen;
+}
+.filter-buttons button:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.filter{
+    margin-left: 220px;
+    margin-top: 40px;
+}
+.revieww{
+    margin-top: 40px;
+    display: flex;
+    gap: 40px;
+    height: 50px;
+    
+}
+
+.Revieww{
+    box-shadow: 0 0 5px pink;
+    background-color: rgb(245, 214, 214);
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 40px;
+
+}
+.cardcont{
+    padding:0px;
+}
+
+.cardcontainer{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+.reviewercard{
+    margin-left: 150px;
+    margin-top: 70px;
+     color: rgb(102, 19, 19);
+
+}
+.content-card{
+      box-shadow: 0 0 5px pink;
+    background-color:rgb(226, 201, 240);
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 500px;
+}
+.content-card h2{
+    color: white;
+
+}
+.content-card button{
+    width: 100px;
+    height: 30px;
+    margin-left: 100px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px;
+}
+.content-card button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+
+}
+.content-card p{
+    text-align: center;
+    padding: 10px;
+}
+.Namee{
+    box-shadow: 0 0 5px pink;
+    background-color: rgb(77, 7, 77);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    text-align: center;
+}
+
+.reviewercontent{
+    display: flex;
+    gap: 30px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+#topreview{
+    margin-top: 30px;
+    text-align: center;
+}
