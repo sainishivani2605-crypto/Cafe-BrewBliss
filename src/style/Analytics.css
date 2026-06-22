@@ -1,0 +1,144 @@
+.Analytic-container{
+    margin-left: 260px;
+    padding: 30px;
+}
+
+.analytop{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.analytop h1{
+    color: #5d2f2f;
+}
+
+.analytop img{
+    width: 50px;
+    height: 50px;
+    border-radius:40px;
+    margin-left: 20px;
+}
+
+.date-filter{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1000px;
+    margin-bottom: 20px;
+}
+
+.date-filter input{
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    display: flex;
+}
+
+
+
+.analycards{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    color: #5d2f2f;
+    text-align: center;
+    padding: 20px;
+    
+}
+
+.analycard{
+    width: 260px;
+    height: 140px;
+    background-color: #f4dcdc;
+    border-radius: 15px;
+    box-shadow: 0 0px 8px #f4dcdc;
+}
+
+.analycard h4{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.analycard p{
+    margin: 5px 0;
+}
+
+.txt{
+    color: green;
+    font-weight: bold;
+}
+.recent-card{
+    margin-top: 40px;
+
+}
+.recent-card h3{
+    margin-left: 150px;    
+}
+.recent-card table{
+width: 500px;
+height: 200px;
+box-shadow: 0 0 5px pink;
+margin-top: 40px;
+background-color: #f4dcdc;
+padding: 10px;
+border-radius: 15px;
+}
+.recent-card td{
+    color: #000;
+}
+.tableheader th{
+        background-color: #f4dcdc;
+        border-radius: 15px;
+    text-align: center;
+}
+
+#vieww{
+    cursor: pointer;
+    
+}
+.rec{
+    display: flex;
+    gap: 100px;
+        color: #5d2f2f;
+
+}
+.itempop h3{
+    margin-left: 200px;
+}
+.itempop{
+    margin-top: 40px;
+    
+}
+.itempop table{
+    width: 500px;
+height: 200px;
+box-shadow: 0 0 5px pink;
+margin-top: 60px;
+background-color: #f4dcdc;
+padding: 10px;
+border-radius: 15px;
+}
+.itempop tr{
+    text-align: center;
+}
+.itempop td{
+    color: #000;
+}
+#butn2{
+     width: 140px;
+    height: 5vh;
+    margin-left: 90px;
+    margin-top: 10px;
+    background-color:rgb(102, 19, 19) ;
+    border-radius: 5px;
+    color: white;
+    transition: 0.3s;
+    border: 1px;
+}
+#butn2:hover{
+    transform: scale(1.1);
+    background-color: chocolate;
+    color: aliceblue;
+    border: 1px;
+    
+}

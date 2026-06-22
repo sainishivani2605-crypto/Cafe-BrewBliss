@@ -1,0 +1,132 @@
+
+.Menu-container{
+    display: flex;
+}
+.Menu{
+    overflow: hidden;
+    margin-left: 220px;
+    margin-top: 10px;
+    white-space: nowrap;
+}
+.menu{
+    display: flex;
+}
+#managemenu{
+color: rgb(102, 19, 19);
+}
+.menu img{
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    margin-left: 20px;
+}
+.menu button{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px;
+    margin-left: 150px;
+    margin-top: 10px;
+    background-color: rgb(102, 19, 19);
+    color: white;
+
+}
+.menu button:hover{
+    background-color: chocolate;
+
+}
+.popular{
+    margin-top: 30px;
+    text-align: center;
+    color: rgb(102, 19, 19);
+    
+}
+.popular h3{
+    word-wrap: break-word;
+    white-space: normal;
+
+}
+.menumid{
+    display: flex;
+    margin-top: 30px;
+    gap: 30px;
+}
+.menumid-card{
+    box-shadow: 0 0 5px pink;
+    background-color: pink;
+    height: 470px;
+    width: 380px;
+    border-radius: 20px;
+    margin-left: 20px;
+    text-align: center;
+    margin-top: 30px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+}
+.menumid-card img{
+    width: 380px;
+    height: 300px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+.menumid-card h2,p{
+    text-align: center;
+    word-break: break-all;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.menumid-card button{
+    margin-top: 20px;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px;
+
+}
+.Totmenumid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-left: 60px;
+    
+}
+.Totmenutop{
+    background-color: rgb(245, 214, 214);
+    height: 50px;
+    margin-top: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+.Totmenumid-card{
+    box-shadow: 0 0 5px pink;
+        background-color: rgb(245, 214, 214);
+        width: 250px;
+        margin-top: 40px;
+        border-radius: 15px;
+
+
+
+}
+.Totmenumid-card img{
+    width: 250px;
+    height: 250px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.Totmenumid-card p{
+    margin-bottom: 10px;
+}
+.totalmenu #cafemenu{
+    margin-top: 40px;
+    color:rgb(102, 19, 19) ;
+}
+.totalmenu #vew{
+text-align: start;
+}
+.totalmenu #vew:hover{
+    cursor: pointer;
+    color: chocolate;
+}
