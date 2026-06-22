@@ -25,7 +25,7 @@ function Login() {
     ) {
       navigate("/dashboard");
     } else {
-      navigate("/orders");
+      navigate("/");
     }
   }
 
