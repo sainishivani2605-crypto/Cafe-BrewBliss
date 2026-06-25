@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import { Link } from "react-router-dom";
 function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,7 +8,6 @@ function Contact() {
 
   return (
     <div className="page-container">
-    
       <div className="contact-card">
         <h2>Contact Us</h2>
         <p>We would love to hear from you! Drop us a message below.</p>

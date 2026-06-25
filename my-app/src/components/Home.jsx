@@ -2,6 +2,8 @@
 import "../App.css";
 import React from 'react';
 import backgr from "../assets/Backgroundimg.jpg";
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <main className="main-content" style={{ backgroundImage: `url(${backgr})` }}>
