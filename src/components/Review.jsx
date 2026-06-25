@@ -1,5 +1,6 @@
 import Sidebar from "./Sidebar";
 import { FaSearch } from "react-icons/fa";
+import '../style/mediaqueries.css';
 import "../style/Review.css";
 import { Link, Navigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

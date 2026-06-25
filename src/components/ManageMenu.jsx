@@ -1,6 +1,7 @@
 import { dfn } from "framer-motion/client";
 import Sidebar from "./Sidebar";
 import { FaSearch } from "react-icons/fa";
+import '../style/mediaqueries.css';
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import cupimg from "../assets/cup2.avif";

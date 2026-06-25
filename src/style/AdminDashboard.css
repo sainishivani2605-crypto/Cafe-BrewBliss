@@ -1,17 +1,21 @@
+
+
 .dashboard-container{
     display : flex;
+    width:100%;
+  min-height:100vh;
 }
-.main-content{
+.Adminmain-content{
     flex: 1;
     padding:20px;
     margin-left: 210px;
-    overflow: hidden;
+    
     
 }
 .cards{
     display: flex;
     gap:20px;
-    margin-top:20px ;
+    margin-top:5px ;
         box-shadow: 0 0 5px rgb(245, 214, 214);
         background-color: rgb(245, 214, 214);
         padding: 20px;
@@ -19,16 +23,16 @@
         flex-wrap: wrap;
 }
 
-.navbar{
+.Dashboardtop{
     box-sizing: border-box;
     box-shadow: 0 0 5px solid black;
     display: flex;
 }
-.navbar h1{
+.Dashboardtop h1{
         color: rgb(99, 52, 52);
 
 }
-.navbar input{
+.Dashboardtop input{
     width: 200px;
     height: 35px;
     border-radius: 20px;
@@ -38,47 +42,65 @@
     border: 1px;
 }
 
-.navbar img{
+.Dashboardtop img{
     width: 50px;
     height: 50px;
     border-radius: 40px;
     margin-left: 20px;
+    margin-top: 10px;
 }
-.navbar .imag{
+.Dashboardtop .imag{
     width: 40px;
     height: 30px;
-
+    margin-bottom: 20px;
 }
-.navbar #btn{
+
+
+.Dashboardtop span{
+    width: 200px;
+    height: 60px;
+    
+}
+.Dashboardtop #btn{
     width: 60px;
     height: 30px;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgb(245, 214, 214);
+   
       background-color:rgb(153, 112, 112);
     color: white;
+    margin-top: 20px;
 
 }
-.navbar #btn:hover{
+.Dashboardtop #btn:hover{
     transform: scale(1.05);
     background-color: chocolate;
     color: white;
 }
-.navbar .cup{
+.Dashboardtop .cup{
     display: flex;
-    margin-left: 450px;
+    margin-left: 430px;
     gap: 20px;
 }
 .cup{
         box-shadow: 0 0 5px rgb(245, 214, 214);
         border-radius: 5px;
-        padding: 10px;
+        padding: 5px;
+        
 }
 .cup h4{
     display: flex;
     
 }
-.card{
-    width: 250px;
+.cup img{
+    margin-top: 0;
+}
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+}
+.dashcard{
+    height: 160px;
+    width: 220px;
     padding: 20px;
     border-radius: 15px;
     background-color: white;
@@ -86,18 +108,18 @@
     transition: 0.3s;
     margin-left: 20px;
 }
-.card:hover{
+.dashcard:hover{
     transform: scale(1.05);
 }
-.card h3{
+.dashcard h3{
     text-align: center;
     color: rgb(99, 52, 52);
 }
-.card p{
+.dashcard p{
     text-align: center;
 
 }
-.card .incr{
+.dashcard .incr{
     color: rgb(19, 121, 19);
 }
 .section{
@@ -114,9 +136,9 @@
         padding: 20px;
         border-radius: 10px;
         margin-top: 50px;
-        margin-left: 24px;
+        margin-left: 14px;
         height: 270px;
-        width: 445px;
+        width: 405px;
         justify-content: center;
         align-items: center;
         align-content: center;
@@ -127,6 +149,7 @@
     align-content: center;
     height: 170px;
     width: 400px;
+
 }
 .order th{
   gap: 10px;
@@ -169,13 +192,12 @@
 .popCard li{
     list-style: none;
     margin-top: 20px;
-    text-align: center;
     align-content: center;
     justify-content: center;
     color:  rgb(99, 52, 52);
 }
 .cardSale{
-    width:440px;
+    width:370px;
     background:white;
     padding:20px;
     margin-top: 45px;
@@ -186,8 +208,7 @@
 }
 
 .top{
-    display:flex;
-    justify-content:space-between;
+
     margin-bottom:20px;
     text-align: center;
     color:  rgb(99, 52, 52);
@@ -249,7 +270,7 @@
 .center h2{
     font-size:28px;
         color:  rgb(99, 52, 52);
-
+text-align: center;
 }
 
 .center p{
@@ -257,4 +278,11 @@
     font-size:14px;
         color:  rgb(99, 52, 52);
 
+}
+.bottom p{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }

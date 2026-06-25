@@ -10,11 +10,24 @@ import ManageMenu from "./components/ManageMenu";
 import Analytics from "./components/Analytics";
 import AddMenu from "./components/AddMenu";
 import Review from "./components/Review"; 
+import Register from "./components/Register";
 import Staff from "./components/Staff";
+ import Nav from "../my-app/src/App";
+import Menu from "../my-app/src/components/Menu"
+import Addorder from "./components/Addorder";
+import About from "../my-app/src/components/About"
+import Contact from "../my-app/src/components/Contact"
+
+
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+      const handlenoemail = () => {
+  const confirmLogout = window.confirm(
+    "Enter the Details ."
+  );
+}
 
   const navigate = useNavigate();
 
@@ -24,8 +37,16 @@ function Login() {
       password === "admin123"
     ) {
       navigate("/dashboard");
-    } else {
-      navigate("/");
+    }
+    else if(
+      email === "" || 
+      password === ""
+    )
+    {
+        handleLogin();
+    }
+     else {
+      navigate("/order");
     }
   }
 
@@ -37,7 +58,7 @@ function Login() {
 
       <div className="right">
         <div className="login-box">
-          <img src={cup} alt="cup" />
+          <img className="cupimage" src={cup} alt="cup" />
 
           <div className="txt">
             <h1>Welcome Back</h1>
@@ -77,20 +98,29 @@ function Login() {
 
 function App() {
   return (
-    <BrowserRouter>
+   
       <Routes>
-        <Route path="/" element={<Login />} />
+     <Route path="/" element={<Nav />} /> 
+ <Route path="/admin" element={<Login />} />
+<Route path="/register" element={<Register />} /> 
         <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/menu" element={<ManageMenu />} />
+        <Route path="/managemenu" element={<ManageMenu />} />
          <Route path="/analytics" element={<Analytics />} />
          <Route path="/add-menu" element={<AddMenu />} />
          <Route path="/review" element = {<Review />} />
          <Route path="/reply" element = {<Reply />} />
          <Route path="/staff" element={<Staff />} />
+     
+<Route path="//menu" element={<Menu />} />
+ <Route path="/about" element={<About />} />
+<Route path="/contact" element={<Contact />} />  
+<Route path="/addorder" element={<Addorder />} />
+         
+       
        
       </Routes>
-    </BrowserRouter>
+   
   );
 }
 

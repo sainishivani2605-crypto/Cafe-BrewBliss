@@ -1,4 +1,5 @@
 import { dfn } from "framer-motion/client";
+import '../style/mediaqueries.css';
 import Sidebar from "./Sidebar";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -8,8 +9,8 @@ function AddMenu() {
   return (
     <div className="Add-container">
         <Sidebar />
-      <div className="Add">
-        <div className="add">
+      <div className="AddItems">
+        <div className="addItems">
             <h1 id="ad">Add New Items</h1>
              <div className="item-card">
             <label className="A" htmlFor="food name">Item Name</label>

@@ -1,12 +1,14 @@
 import Sidebar from "./Sidebar";
 import "../style/Order.css";
-import { Link } from "react-router-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import cupimg from "../assets/cup2.avif";
 import { FaSearch } from "react-icons/fa";
+import '../style/mediaqueries.css';
 import { FaShoppingBag, FaClock, FaRupeeSign } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 function Order(){
+    const navigate = useNavigate();
     return(
         <div className="order-container">
         <Sidebar />
@@ -14,7 +16,7 @@ function Order(){
         <div className="Order">
             <h1 id="order">Manage Orders</h1>
             <img src={cupimg} />
-            <button id="butn">+ New Order</button>
+            <button onClick={() => navigate("/addorder")} id="butn">📝+New Order</button>
             <div className="searchh">           <label htmlFor="search"></label>
             <FaSearch className="search-icon" />
             <input className="search" type="search" placeholder="Search"></input>
@@ -76,8 +78,11 @@ function Order(){
         </tr>
         </tbody>
        </table>
-        <h3>TOTAL</h3>
-        <h3>Rs.700</h3>
+       <div className="totalprice">
+        <h3>TOTAL =</h3>
+        <h3> Rs.700</h3>
+
+        </div>
     </div>
     <div className="end">
         <button id="edit">Edit</button>
@@ -116,8 +121,11 @@ function Order(){
         </tr>
         </tbody>
        </table>
-        <h3>TOTAL</h3>
+       <div className="totalprice" 
+       >
+        <h3>TOTAL = </h3>
         <h3>Rs.600</h3>
+        </div>
     </div>
     <div className="end">
         <button id="edit">Edit</button>
@@ -151,8 +159,10 @@ function Order(){
         </tbody>
 
        </table>
-        <h3>TOTAL</h3>
+       <div className="totalprice">
+        <h3>TOTAL = </h3>
         <h3>Rs.300</h3>
+        </div>
     </div>
     <div className="end">
         <button id="edit">Edit</button>

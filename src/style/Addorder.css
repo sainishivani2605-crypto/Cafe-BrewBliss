@@ -1,0 +1,78 @@
+.Addorder-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.addorder{
+    margin-left: 220px;
+
+}
+.add-order{
+        color: rgb(102, 19, 19);
+        text-align: center;
+        display: flex;
+}
+ .add-order h1,h3{
+    text-align: center;
+        color: rgb(102, 19, 19);
+
+}
+.addorder{
+    gap: 10px;
+}
+.add-ordercard{
+    background-color: rgb(245,214,214);
+    padding: 30px;
+    border-radius: 15px;
+    width: 500px;
+    margin-top: 30px;
+    margin-left: 50px;
+}
+.add-ordercard select{
+    align-items: center;
+    height: 30px;
+    width: 200px;
+    border: 1px;
+    border-radius: 15px;
+    text-align: center;
+    align-content: center;
+
+}
+.add-ordercard input{
+    border: 1px;
+    border-radius: 15px;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    
+}
+.add-ordercard form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    margin-top: 50px;
+}
+
+.add-ordercard button{
+    grid-column: span 2;
+    width: 200px;
+    height: 30px;
+    border: 1px;
+    border-radius: 15px;
+
+}
+.Totmenumid-cardorder img{
+    width: 150px;
+    height: 140px;
+
+}
+.Totmenumid-cardorder{
+    display: flex;
+    margin-top: 10px;
+    flex-wrap:wrap ;
+}
+.Totmenumid-cardorder p{
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}

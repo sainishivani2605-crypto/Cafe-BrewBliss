@@ -1,8 +1,10 @@
 import React from 'react';
 
+
 function About() {
   return (
     <div className="page-container">
+    
       <div className="about-section">
         <h2>About Brew Bliss Cafe</h2>
         <p className="about-text">

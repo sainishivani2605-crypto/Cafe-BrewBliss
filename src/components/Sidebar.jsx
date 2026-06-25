@@ -1,5 +1,6 @@
 import cupimg from "../assets/cup2.avif";
 import "../style/Sidebar.css";
+import '../style/mediaqueries.css';
 import logo1 from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -40,7 +41,7 @@ function Sidebar() {
                 <Link to="/orders" >Orders</Link></li>
 
                 <li><FaUtensils /><Link
-                to="/menu"> Menu</Link></li>
+                to="/managemenu"> Menu</Link></li>
 
                 <li><FaStar />
                 <Link to="/review">Reviews</Link></li>

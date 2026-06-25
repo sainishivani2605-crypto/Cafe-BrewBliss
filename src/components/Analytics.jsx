@@ -1,6 +1,7 @@
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import '../style/mediaqueries.css';
 import cupimg from "../assets/cup2.avif";
 import "../style/Analytics.css";
 import {

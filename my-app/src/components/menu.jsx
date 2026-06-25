@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-function menu() {
+
+function Menu() {
   const [cartItems, setCartItems] = useState([]);
 
   const menuItems = [
-    { id: 1, name: 'Espresso', price: 149, desc: 'Rich and bold classic espresso shot.' },
+    { id: 1, name: 'Espresso', price: 300, desc: 'Rich and bold classic espresso shot.' },
     { id: 2, name: 'Hazelnut Latte', price: 229, desc: 'Creamy milk with premium hazelnut flavor.' },
     { id: 3, name: 'Chocolate Croissant', price: 189, desc: 'Flaky pastry filled with dark choco.' },
     { id: 4, name: 'Blueberry Cheesecake', price: 249, desc: 'Classic rich cheesecake with berry compote.' },
@@ -24,7 +25,9 @@ function menu() {
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
   return (
-    <div className="page-container" style={{ padding: '20px' }}>
+  
+    <div className="page-container" style={{ padding: '20px'} }>
+     
       <div className="menu-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h2>Our Brew Bliss Cafe Menu</h2>
         <div className="cart-badge">
@@ -34,11 +37,10 @@ function menu() {
 
       <div className="menu-grid">
         {menuItems.map((item) => (
-          <div key={item.id} className="menu-card">
+          <div key={item.id} className="custmenu-card">
             <h3>{item.name}</h3>
             <p className="item-desc">{item.desc}</p>
             <div className="price-section">
-              {/* Display karte waqt ₹ symbol lagaya hai */}
               <span className="price">₹{item.price}</span>
               <button className="add-btn" onClick={() => addToCart(item)}>
                 Add to Cart
@@ -104,7 +106,8 @@ function menu() {
         </div>
       )}
     </div>
+
   );
 }
 
-export default menu;
+export default Menu;

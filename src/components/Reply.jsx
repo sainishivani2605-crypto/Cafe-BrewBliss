@@ -1,6 +1,7 @@
 import Sidebar from "./Sidebar";
 import { FaSearch } from "react-icons/fa";
 import { Link, Navigate } from "react-router-dom";
+import '../style/mediaqueries.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useState} from "react";
 import cupimg from "../assets/cup2.avif";
@@ -10,6 +11,11 @@ import "../style/Reply.css";
 import { RxDividerVertical } from "react-icons/rx";
 
 function Reply(){
+      const handlesend = () => {
+  const confirmLogout = window.confirm(
+    "Reply sent successfully!"
+  );
+}
     return (
 
         <div className="Reply-container">
@@ -23,7 +29,7 @@ function Reply(){
                     <textarea placeholder="Write your Reply here ...">
                         
                     </textarea>
-                    <button>Send</button>
+                    <button onClick={handlesend}>Send</button>
                 </div>
             </div>
         </div>

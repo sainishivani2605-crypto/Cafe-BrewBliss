@@ -1,6 +1,7 @@
 import Sidebar from "./Sidebar";
 import "../style/AdminDashboard.css";
 import { FaBell, FaUserCircle } from "react-icons/fa";
+import '../style/mediaqueries.css';
 import { BiColor } from "react-icons/bi";
 import cupimg from "../assets/cup2.avif";
 import cup from "../assets/cup.jpg";
@@ -14,9 +15,9 @@ function AdminDashboard(){
 
     <Sidebar />
             
-    <div className="main-content">
+    <div className="Adminmain-content">
 
-        <div className="navbar">
+        <div className="Dashboardtop">
             <h1>Dashboard</h1>
             <img src={cupimg} />
             <span className="cup">
@@ -31,7 +32,7 @@ function AdminDashboard(){
         <div className="cards">
 
 
-            <div className="card">
+            <div className="dashcard">
                 <h3>Total Order</h3>
                 <p>1,200</p>
                 <p className="incr">↗25%</p>
@@ -39,14 +40,14 @@ function AdminDashboard(){
             </div>
 
             
-            <div className="card">
+            <div className="dashcard">
                 <h3>Revenue</h3>
                 <p>2,00,000</p>
                 <p className="incr">↗15%</p>
                 <p>This month</p>
             </div>
            
-            <div className="card">
+            <div className="dashcard">
                 <h3>Customers</h3>
                 <p>1,000</p>
                 <p className="incr">↗10%</p>
@@ -54,7 +55,7 @@ function AdminDashboard(){
             </div>
 
        
-            <div className="card">
+            <div className="dashcard">
                 <h3>Total Menu</h3>
                 <p>56</p>
                 <p className="incr">+5</p>
@@ -97,7 +98,7 @@ function AdminDashboard(){
                 </div>
                 <div className="totalSale">
                         <h2 className="recent" id="sale">Total Sales</h2>
-                       <div class="cardSale">
+                       <div className="cardSale">
                         <div className="top">
                             <h3>Today Performance</h3>
                 

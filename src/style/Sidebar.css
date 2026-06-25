@@ -1,9 +1,12 @@
+
 .sidebar{
-    width:200px;
+    width:220px;
     min-height:100vh;
     background:rgb(245, 214, 214);
     color:white;
-    margin: 7px;
+    margin: 0;
+    padding: 0;
+    
     border-radius: 10px;
     position: fixed;
 
@@ -20,10 +23,7 @@
     object-fit:cover;
     margin-left: 80px;
 }
-.sidebar ul{
-    margin: 30px;
 
-}
 .sidebar ul li{
     list-style: none;
     gap: 20px;

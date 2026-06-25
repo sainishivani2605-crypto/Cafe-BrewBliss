@@ -6,7 +6,7 @@
 #order{
     flex: 1;
     padding:10px;
-    margin-left: 210px;
+    margin-left: 220px;
         color: rgb(102, 19, 19);
         display: flex;
        white-space: nowrap;
@@ -64,30 +64,30 @@
     margin-top: 40px;
 }
 .activeorder{
-    gap: 50px;
+    position: relative;
     margin-top: 20px;
     margin-left: 70px;
-    box-shadow:rgb(245, 214, 214) ;
     background-color: rgb(245, 214, 214);
     width: 350px;
-    height: 100px;
+    height: 120px;
     border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-    
-}
-.activeorder h3,h4{
     text-align: center;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 0px;
+    padding-top: 20px;
 }
-.icon{
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    color: rgb(102, 19, 19);
 
+.activeorder .icon{
+    position: absolute;
+    top: 12px;
+    left: 32px;
+    font-size: 28px;
+    color: rgb(102, 19, 19);
 }
+.activeorder h3,
+.activeorder h4{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 #view{
     cursor: pointer;
 
@@ -110,7 +110,7 @@
     box-shadow: 0 0 5px rgb(245, 214, 214);
     background-color: rgb(245, 214, 214);
     width: 350px;
-    height: 350px;
+    height: 390px;
     border-radius: 15px;
 }
 .up{
@@ -131,7 +131,10 @@
     margin: 10px;
     margin-left: 150px;
 }
-
+.totalprice{
+    display: flex;
+    margin-left: 100px;
+}
 .middle h4{
     text-align: start;
     margin: 10px;

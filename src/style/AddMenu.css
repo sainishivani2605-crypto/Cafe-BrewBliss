@@ -1,27 +1,28 @@
 
 
-.Add-container{
-    display: flex;
-    flex-wrap: wrap;
+.AddItems-container{
+
+display: flex;
 }
-.Add{
-    display: flex;
+.addItems{
     width: 100%;
 
 }
-.add{
+.addItems{
     margin-left: 240px;
-    margin-top: 60px;
+    margin-top: 10px;
     width: calc(100% - 260px);
     background-color: pink;
     border-radius: 20px;
     padding: 30px;
+    height: 700px;
 }
 
 #ad{
     text-align: center;
     color: rgb(102, 19, 19);
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .item-card{

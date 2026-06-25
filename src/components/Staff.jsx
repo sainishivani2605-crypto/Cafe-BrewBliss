@@ -1,9 +1,13 @@
 import Sidebar from "./Sidebar";
 import { BrowserRouter,Route,Routes } from "react-router-dom";
+import '../style/mediaqueries.css';
 import { Link, Navigate } from "react-router-dom";
 import cupimg from "../assets/cup2.avif";
 import "../style/Staff.css";
 import { FaSearch } from "react-icons/fa";
+ import { useNavigate } from "react-router-dom";
+
+
 import {
   MdGroups,      // Employees
   MdVerifiedUser,// Active Staff
@@ -11,6 +15,7 @@ import {
   MdPersonAdd,   // New Joiners
 } from "react-icons/md";
 function Staff(){
+   const navigate = useNavigate();
     return(
         <div className="Staff-container">
             <Sidebar />
@@ -124,10 +129,11 @@ function Staff(){
         <td>07:00 PM</td>
         <td>Present</td>
       </tr>
-      <p id="Vieww">View All</p>
+      
     </tbody>
 
   </table>
+  <p id="Vieww">View All</p>
 </div>
 <h2 id="Detail">Details of Staff</h2>
 <div className="Aboutteam">
