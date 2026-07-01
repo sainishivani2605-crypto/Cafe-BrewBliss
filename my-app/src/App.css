@@ -22,7 +22,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
   background-color: #4b2e2e; 
   padding: 15px 30px;
   position: fixed;
@@ -32,14 +31,10 @@ body {
   z-index: 1000;
 }
 
-.navbar-logo {
+.logo {
   font-size: 24px;
   font-weight: bold;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   letter-spacing: 2px;
-  object-fit: cover;
   color: white;
 }
 
@@ -101,7 +96,6 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
 }
 
 .signboard {
@@ -132,26 +126,12 @@ p {
   font-style: italic;
 }
 
-
+/* Common Footer Style for All Pages */
 .cafe-footer, .footer {
   background-color: #4b2e2e;
   color: white;
   padding: 30px 20px;
   text-align: center;
-
-.page-container {
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  padding: 50px 10%;
-  /* max-width: 1200px; */
-  width: 100%;
-  margin: 0 ;
-  background-color: rgb(245, 214, 214);
-height: 700px;
-overflow: hidden;
-
-
 }
 
 .footer-info {
@@ -425,69 +405,14 @@ textarea.contact-input {
     font-size: 2rem;
   }
 }
-/* ===========================
-   LIVE CART SUMMARY STYLES
-=========================== */
-.cart-summary-section {
-  background: white;
-  margin-top: 50px;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.1);
+.navbar-logos{
+  height:50px;
+  width:50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+/* Custom wrapper to prevent navbar overlap */
+.page-content-wrapper {
+  padding-top: 80px; 
 }
 
-.cart-summary-section h2 {
-  margin-bottom: 20px;
-  border-bottom: 2px solid #f8f5f2;
-  padding-bottom: 10px;
-}
-
-.empty-cart-msg {
-  color: #888;
-  font-style: italic;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.cart-items-list {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 20px;
-}
-
-.cart-item-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 10px;
-  border-bottom: 1px dashed #ddd;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.cart-item-price {
-  color: #8d6e63;
-  font-weight: bold;
-}
-
-.cart-total-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f8f5f2;
-  padding: 15px 20px;
-  border-radius: 8px;
-  margin-top: 15px;
-}
-
-.clear-cart-btn {
-  background: #d32f2f;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  font-weight: 600;
-}
-
-.clear-cart-btn:hover {
-  background: #b71c1c;
-}}

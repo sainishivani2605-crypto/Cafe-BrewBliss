@@ -1,17 +1,13 @@
 import React from 'react';
-import { Link } from "react-router-dom"; // Navigation ke liye lazmi hai
-
-
+import { Link } from "react-router-dom";
 function About() {
   return (
     <div className="about-page">
-      
       {/* 1. Banner Section */}
       <div className="about-banner">
         <h1>☕ About Brew Bliss Cafe</h1>
         <p>Where Every Cup Tells a Story</p>
       </div>
-
       {/* 2. Intro Section */}
       <div className="page-container" style={{ backgroundColor: 'transparent', height: 'auto' }}>
         <div className="about-section" style={{ textAlign: 'center', margin: '40px auto', maxWidth: '800px' }}>
@@ -24,7 +20,6 @@ function About() {
           </p>
         </div>
       </div>
-
       {/* 3. Our Story Section */}
       <div className="about-container">
         <div className="about-image">
@@ -33,7 +28,6 @@ function About() {
             alt="Coffee Shop"
           />
         </div>
-
         <div className="about-content">
           <h2>Our Story</h2>
           <p>
@@ -48,7 +42,7 @@ function About() {
             relaxing, Brew Bliss Cafe is the perfect place for you.
           </p>
           
-          {/* Link component use kiya hai taaki menu page par ja sakein */}
+ 
           <Link to="/menu">
             <button className="about-btn">
               Explore Our Menu
@@ -57,7 +51,7 @@ function About() {
         </div>
       </div>
 
-      {/* 4. Features Section */}
+     
       <div className="features-section">
         <h2>Why Choose Us?</h2>
 

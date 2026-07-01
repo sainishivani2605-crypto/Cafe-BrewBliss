@@ -8,37 +8,47 @@ import logoImg from './logo.jpeg';
 
 function App() {
   const navigate = useNavigate();
+
   return (
     <div>
-
+      {/* --- NAVBAR (Yeh hamesha har page par rahega) --- */}
       <nav className="navbar">
         <div className="logo">
-          <img src={logoImg} alt="logo" className="navbar-logo" />
-         
+          <img src={logoImg} alt="logo" className="navbar-logos" />
         </div>
-
+        
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
-       <li><Link to="/menu">Menu</Link></li>
-      <li><Link to="/about">About</Link></li>
-         <li><Link to="/contact">Contact</Link></li>
-         <button onClick={() => navigate("/register")} className='buttn'>Register</button>
-        <button onClick={() => navigate("/admin")} className='buttn'>
-        Login
-        </button>
+          <li><Link to="/menu">Menu</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        
-      </Routes>
 
+        {/* Agar login/register buttons hain toh unhe yahan navbar me rakh sakte hain */}
+        <div className="nav-buttons">
+          <button onClick={() => navigate("/register")} className="cart-btn" style={{ marginRight: '10px' }}>Register</button>
+          <button onClick={() => navigate("/admin")} className="cart-btn">Login</button>
+        </div>
+      </nav>
+
+      {/* --- PAGES CONTENT (Sirf yeh part badlega jab route change hoga) --- */}
+      <div className="page-content-wrapper">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
 

@@ -1,15 +1,6 @@
-
 import React, { useState } from "react";
-
-
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-
-
 function Menu() {
- 
   const [cart, setCart] = useState([]);
-
   const menuItems = [
     {
       id: 1,
@@ -55,12 +46,12 @@ function Menu() {
     }
   ];
 
-  // Cart mein item add karne ka function
+  
   const addToCart = (item) => {
-    setCart([...cart, item]); // Purane cart items ke sath naya item add ho jayega
+    setCart([...cart, item]); 
   };
 
-  // Cart ko khali karne ka function
+ 
   const clearCart = () => {
     setCart([]);
   };
@@ -70,7 +61,6 @@ function Menu() {
 
       <div className="menu-header">
         <h1>☕ Brew Bliss Cafe Menu</h1>
-       
         <div className="cart-box">
           🛒 Cart : {cart.length} Items
         </div>
@@ -89,7 +79,7 @@ function Menu() {
               <p>{item.desc}</p>
               <div className="bottom-row">
                 <span className="price">₹{item.price}</span>
-                {/* Yahan hum arrow function se poora 'item' pass kar rahe hain */}
+              
                 <button
                   className="cart-btn"
                   onClick={() => addToCart(item)}
