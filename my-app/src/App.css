@@ -101,6 +101,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .signboard {
@@ -131,12 +132,26 @@ p {
   font-style: italic;
 }
 
-/* Common Footer Style for All Pages */
+
 .cafe-footer, .footer {
   background-color: #4b2e2e;
   color: white;
   padding: 30px 20px;
   text-align: center;
+
+.page-container {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 50px 10%;
+  /* max-width: 1200px; */
+  width: 100%;
+  margin: 0 ;
+  background-color: rgb(245, 214, 214);
+height: 700px;
+overflow: hidden;
+
+
 }
 
 .footer-info {
@@ -475,4 +490,4 @@ textarea.contact-input {
 
 .clear-cart-btn:hover {
   background: #b71c1c;
-}
+}}

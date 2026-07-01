@@ -1,15 +1,20 @@
+
 import React, { useState } from "react";
 
 
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+
+
 function Menu() {
-  // Abhi sirf number track ho raha tha, ab hum poori array list track karenge
+ 
   const [cart, setCart] = useState([]);
 
   const menuItems = [
     {
       id: 1,
       name: "Espresso",
-      price: 149, // Numeric value format for easy calculation later
+      price: 149, 
       image: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=500",
       desc: "Rich and bold classic espresso shot."
     },
@@ -65,7 +70,7 @@ function Menu() {
 
       <div className="menu-header">
         <h1>☕ Brew Bliss Cafe Menu</h1>
-        {/* Cart total count array ki length se pata chalega */}
+       
         <div className="cart-box">
           🛒 Cart : {cart.length} Items
         </div>
