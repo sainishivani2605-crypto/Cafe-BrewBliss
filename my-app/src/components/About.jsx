@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import axios from "axios";
 function About() {
   return (
     <div className="about-page">
