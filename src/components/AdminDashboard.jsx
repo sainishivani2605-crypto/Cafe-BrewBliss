@@ -1,3 +1,5 @@
+import axios from "axios";
+import {useEffect,useState} from "react";
 import Sidebar from "./Sidebar";
 import "../style/AdminDashboard.css";
 import { FaBell, FaUserCircle } from "react-icons/fa";
@@ -5,11 +7,80 @@ import '../style/mediaqueries.css';
 import { BiColor } from "react-icons/bi";
 import cupimg from "../assets/cup2.avif";
 import cup from "../assets/cup.jpg";
-import { FaHamburger, FaCoffee } from "react-icons/fa";
 import { GiSandwich } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
+import {
+    FaShoppingCart,     // Total Orders
+    FaRupeeSign,        // Revenue
+    FaUsers,            // Customers
+    FaUtensils,         // Menu
+    FaUserTie,          // Staff
+    FaStar,             // Reviews
+    FaClipboardList,    // Recent Orders
+    FaFire,             // Popular Items
+    FaChartLine,        // Analytics
+    FaCoffee,
+     FaHamburger            // Cafe
+} from "react-icons/fa";
 function AdminDashboard(){
+    const [topSelling, setTopSelling] = useState([]);
+
+
+
+    const [dashboard,setDashboard] = useState({
+          totalRevenue: 0,
+    totalOrders: 0,
+    totalCustomers: 6,
+    averageOrderValue: 0,
+    totalMenu: 0,
+    totalStaff: 0,
+    totalReviews: 0,
+    recentOrders:[]
+    })
     const navigate = useNavigate();
+    useEffect(() => {
+
+    const fetchDashboard = async () => {
+
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const response = await axios.get(
+                "http://localhost:5000/api/analytics",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            console.log(response.data);
+            setDashboard(response.data);
+            
+    const topResponse = await axios.get(
+    "http://localhost:5000/api/analytics/top-selling",
+    {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+     
+);
+setTopSelling(topResponse.data);
+
+
+        } catch (err) {
+            console.log(err);
+        }
+
+    };
+
+    fetchDashboard();
+
+
+
+
+}, []);
     return(
         <div className="dashboard-container">
 
@@ -33,37 +104,45 @@ function AdminDashboard(){
 
 
             <div className="dashcard">
-                <h3>Total Order</h3>
-                <p>1,200</p>
-                <p className="incr">↗25%</p>
+                <h3><FaShoppingCart/>Total Order</h3>
+                <p>{dashboard.totalOrders}</p>
+              
                 <p>This month</p>
             </div>
 
             
             <div className="dashcard">
-                <h3>Revenue</h3>
-                <p>2,00,000</p>
-                <p className="incr">↗15%</p>
+                <h3><FaRupeeSign/>Revenue</h3>
+                <p>₹ {dashboard.totalRevenue}</p>
                 <p>This month</p>
             </div>
            
             <div className="dashcard">
-                <h3>Customers</h3>
-                <p>1,000</p>
-                <p className="incr">↗10%</p>
+                <h3><FaUsers/>Customers</h3>
+                <p>{dashboard.totalCustomers}</p>
                 <p>This month</p>
             </div>
 
        
             <div className="dashcard">
-                <h3>Total Menu</h3>
-                <p>56</p>
-                <p className="incr">+5</p>
+                <h3><FaUtensils/>Total Menu</h3>
+                <p>{dashboard.totalMenu}</p>
+                <p>This month</p>
+            </div>
+
+               <div className="dashcard">
+                <h3><FaUserTie/>Total Staff</h3>
+                <p>{dashboard.totalStaff}</p>
+                <p>This month</p>
+            </div>
+
+               <div className="dashcard">
+                <h3><FaStar/>Total Reviews</h3>
+                <p>{dashboard.totalReviews}</p>
                 <p>This month</p>
             </div>
 
             <div className="section">
-                <div className="oders"></div>
                 <h2 className="recent">Recent Orders</h2>
                 <div className="order">
                 <table>
@@ -75,24 +154,26 @@ function AdminDashboard(){
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>#101</td>
-                        <td>Cappuccino x2</td>
-                        <td id="pend">Pending</td>
-                    </tr>
-                   
-                    <tr>
-                        <td>#102</td>
-                        <td>Burger x1</td>
-                        <td id="deli">Delivered</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>#103</td>
-                        <td>Pizza x2</td>
-                        <td id="prep">Preparing</td>
-                    </tr>
-                    </tbody>
+    {dashboard.recentOrders.length === 0 ? (
+        <tr>
+            <td colSpan="3">No recent orders</td>
+        </tr>
+    ) : (
+        dashboard.recentOrders.map((order) => (
+            <tr key={order._id}>
+                <td>#{order._id.slice(-5)}</td>
+
+                <td>
+                    {order.items
+                        .map(item => `${item.menuItem?.name} x${item.quantity}`)
+                        .join(", ")}
+                </td>
+
+                <td className={order.status.toLowerCase()} >{order.status}</td>
+            </tr>
+        ))
+    )}
+</tbody>
                 </table>
                 </div>
                 </div>
@@ -129,11 +210,17 @@ function AdminDashboard(){
                 <div className="popular">
                     <h2 className="recent" id="pop">Popular Items</h2>
                     <div className="popCard">
-                        <ul>
-                            <li><FaHamburger/>Burger</li>
-                            <li><FaCoffee/>Cappuccino</li>
-                            <li><GiSandwich/>Sandwich</li>
-                        </ul>
+                      <ul>
+    {topSelling.length === 0 ? (
+        <li>No sales yet</li>
+    ) : (
+        topSelling.map((item) => (
+            <li key={item.item}>
+                <FaHamburger /> {item.item} ({item.sold})
+            </li>
+        ))
+    )}
+</ul>
                     </div>
 
                 </div>

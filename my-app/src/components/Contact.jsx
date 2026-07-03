@@ -25,6 +25,8 @@ function Contact() {
           <p>✉️ support@brewbliss.com</p>
         </div>
       </div>
+        
+   
     </div>
   );
 }

@@ -1,8 +1,11 @@
+
+// export default App;
+import axios from "axios";
 import "./AdminApp.css";
 import cup from "./assets/cup2.avif";
 import backGround from "./assets/backgroung.jpg";
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Reply from "./components/Reply";
 import AdminDashboard from "./components/AdminDashboard";
 import Orders from "./components/Order";
@@ -12,43 +15,90 @@ import AddMenu from "./components/AddMenu";
 import Review from "./components/Review"; 
 import Register from "./components/Register";
 import Staff from "./components/Staff";
- import Nav from "../my-app/src/App";
-import Menu from "../my-app/src/components/Menu"
 import Addorder from "./components/Addorder";
-import About from "../my-app/src/components/About"
-import Contact from "../my-app/src/components/Contact"
 
+
+import Home from "../my-app/src/components/Home";
+import Menu from "../my-app/src/components/Menu";
+import About from "../my-app/src/components/About";
+import Contact from "../my-app/src/components/Contact";
+
+import logoImg from "../my-app/src/logo.jpeg"; 
+
+
+import { Outlet, Link } from "react-router-dom";
+
+const CustomerLayout = () => {
+  const navigate = useNavigate();
+  return (
+    <div>
+    
+      <nav className="navbar">
+        <div className="logo">
+          <img src={logoImg} alt="logo" className="navbar-logo" />
+          <span>BREW BLISS CAFE</span>
+        </div>
+
+        <ul className="nav-links">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/menu">Menu</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+          <button onClick={() => navigate("/register")} className='buttn'>Register</button>
+          <button onClick={() => navigate("/admin")} className='buttn'>Login</button>
+        </ul>
+      </nav>
+    
+      <Outlet />
+    </div>
+  );
+};
 
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-      const handlenoemail = () => {
-  const confirmLogout = window.confirm(
-    "Enter the Details ."
-  );
-}
 
   const navigate = useNavigate();
 
-  function handleLogin() {
-    if (
-      email === "admin@gmail.com" &&
-      password === "admin123"
-    ) {
-      navigate("/dashboard");
-    }
-    else if(
-      email === "" || 
-      password === ""
-    )
-    {
-        handleLogin();
-    }
-     else {
-      navigate("/order");
-    }
-  }
+ const handleLogin = async () => {
+
+    try {
+
+        const response = await axios.post(
+            "http://localhost:5000/api/users/login",
+            {
+                email,
+                password
+            }
+        );
+
+        localStorage.setItem(
+            "token",
+            response.data.token
+        );
+
+        alert("Login Successful");
+
+        navigate("/dashboard");
+
+      } //catch (err) {
+
+    //     alert(
+    //         err.response?.data?.message || "Login Failed"
+    //     );
+
+    // }
+    catch (err) {
+    console.log("Full Error:", err);
+    console.log("Response:", err.response);
+    console.log("Data:", err.response?.data);
+    console.log("Status:", err.response?.status);
+
+    alert(err.response?.data?.message || "Login Failed");
+}
+
+};
 
   return (
     <div className="container">
@@ -87,9 +137,7 @@ function Login() {
 
           <br />
 
-          <button onClick={handleLogin}>
-            Login
-          </button>
+          <button onClick={handleLogin}>Login</button>
         </div>
       </div>
     </div>
@@ -98,29 +146,30 @@ function Login() {
 
 function App() {
   return (
+    <Routes>
+    
+      <Route element={<CustomerLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Route>
+
    
-      <Routes>
-     <Route path="/" element={<Nav />} /> 
- <Route path="/admin" element={<Login />} />
-<Route path="/register" element={<Register />} /> 
-        <Route path="/dashboard" element={<AdminDashboard />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/managemenu" element={<ManageMenu />} />
-         <Route path="/analytics" element={<Analytics />} />
-         <Route path="/add-menu" element={<AddMenu />} />
-         <Route path="/review" element = {<Review />} />
-         <Route path="/reply" element = {<Reply />} />
-         <Route path="/staff" element={<Staff />} />
+      <Route path="/admin" element={<Login />} />
+      <Route path="/register" element={<Register />} /> 
+      <Route path="/dashboard" element={<AdminDashboard />} />
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/managemenu" element={<ManageMenu />} />
+      <Route path="/analytics" element={<Analytics />} />
+      <Route path="/add-menu" element={<AddMenu />} />
+      <Route path="/review" element={<Review />} />
+      <Route path="/reply" element={<Reply />} />
+      <Route path="/staff" element={<Staff />} />
+      <Route path="/addorder" element={<Addorder />} />
      
-<Route path="//menu" element={<Menu />} />
- <Route path="/about" element={<About />} />
-<Route path="/contact" element={<Contact />} />  
-<Route path="/addorder" element={<Addorder />} />
-         
-       
-       
-      </Routes>
-   
+<Route path="/addorder/:id" element={<Addorder />} />
+    </Routes>
   );
 }
 

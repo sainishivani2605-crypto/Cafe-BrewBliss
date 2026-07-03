@@ -91,14 +91,11 @@
 .content-card{
       box-shadow: 0 0 5px pink;
     background-color:rgb(226, 201, 240);
-    margin-top: 20px;
+    
     border-radius: 20px;
     width: 500px;
 }
-.content-card h2{
-    color: white;
 
-}
 .content-card button{
     width: 100px;
     height: 30px;
@@ -118,11 +115,12 @@
     padding: 10px;
 }
 .Namee{
-    box-shadow: 0 0 5px pink;
-   color: rgb(77, 7, 77);
+   
+  
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     text-align: center;
+
   
 }
 

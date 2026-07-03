@@ -140,77 +140,63 @@ function Staff(){
     <div className="team-card">
         <h2 id="NameofStaff">Kanika Rao</h2>
         <p>MANAGER</p>
-        <p>kanika@gmail.com</p>
+        <p>Experience: 5yr</p>
         <h3 id="Rating">4.5⭐</h3>
-        <p>Salary 500000</p>
-        <button>✉️Email</button>
-        <button>📞Call</button>
+  
 
     </div>
 
     <div className="team-card">
         <h2 id="NameofStaff">Priya Sharma</h2>
         <p>CASHIER</p>
-        <p>sharma@gmail.com</p>
+        <p>Experience: 3yr</p>
         <h3 id="Rating">4.4⭐</h3>
-        <p>Salary 300000</p>
-        <button>✉️Email</button>
-        <button>📞Call</button>
+        
 
     </div>
 
     <div className="team-card">
         <h2 id="NameofStaff">Amit Singh </h2>
         <p>CHEF</p>
-        <p>amit@gmail.com</p>
+        <p>Experience: 6yr</p>
         <h3 id="Rating">4.5⭐</h3>
-        <p>Salary 400000</p>
-        <button>✉️Email</button>
-        <button>📞Call</button>
+       
 
     </div>
 
     <div className="team-card">
         <h2 id="NameofStaff">Amrita Bhati</h2>
         <p>CHEF</p>
-        <p>amrita@gmail.com</p>
+        <p>Experience: 5yr</p>
         <h3 id="Rating">4.5⭐</h3>
-        <p>Salary 400000</p>
-        <button>✉️Email</button>
-        <button>📞Call</button>
+     
 
     </div>
 
     <div className="team-card">
         <h2 id="NameofStaff">Rahul Kumar</h2>
         <p>BARISTA</p>
-        <p>rahul@gmail.com</p>
+        <p>Experience: 4yr</p>
         <h3 id="Rating">4.1⭐</h3>
-        <p>Salary 400000</p>
-        <button>✉️Email</button>
-        <button>📞Call</button>
+ 
 
     </div>
 
      <div className="team-card">
         <h2 id="NameofStaff">Shivam Singh</h2>
         <p>WAITER</p>
-        <p>shivam@gmail.com</p>
+        <p>Experience: 2yr</p>
         <h3 id="Rating">4.0⭐</h3>
-        <p>Salary 200000</p>
-        <button>✉️Email</button>
-        <button>📞Call</button>
+        
 
     </div>
 
       <div className="team-card">
         <h2 id="NameofStaff">Anshul Singh</h2>
         <p>CHEF</p>
-        <p>anshul@gmail.com</p>
+        <p>Experience: 4yr</p>
         <h3 id="Rating">4.0⭐</h3>
-        <p>Salary 400000</p>
-        <button>✉️Email</button>
-        <button>📞Call</button>
+       
 
     </div>
 </div>

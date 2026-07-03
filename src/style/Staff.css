@@ -120,6 +120,7 @@ color: chocolate;
     border-radius: 20px;
     width: 280px;
     margin-top: 30px;
+    height: auto;
 }
 .team-card p{
     text-align: center;

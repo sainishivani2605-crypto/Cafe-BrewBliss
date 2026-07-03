@@ -10,7 +10,8 @@ import {
     FaUtensils,
     FaStar,
     FaUsers,
-    FaSignOutAlt
+    FaSignOutAlt,
+    FaWallet
 } from "react-icons/fa";
 import { FaChartLine, FaFileExport } from "react-icons/fa";
 
@@ -57,7 +58,7 @@ function Analytics(){
                 <p>This month</p>
             </div>
                  <div className="analycard">
-                <h4><FaClipboardList size={24}/>
+                <h4><FaWallet size={24}/>
                    Avg Order value </h4>
                 <p>100</p>
                 <p className="txt">↗15%</p>

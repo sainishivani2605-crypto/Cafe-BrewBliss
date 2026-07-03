@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import "../style/Addorder.css";
 import cupimg from "../assets/cup2.avif";
@@ -14,16 +17,183 @@ import sandwich from "../assets/sandwich2.jpg";
    import coffee3 from "../assets/espresso.jpg";
      import mocha from "../assets/mocha.jpg";
 function Addorder() {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert("Order Added Successfully!");
+     const { id } = useParams();
+    const [menu, setMenu] = useState([]);
+
+const [selectedItem, setSelectedItem] = useState("");
+const [quantity, setQuantity] = useState(1);
+const [customerName, setCustomerName] = useState("");
+const [tableNumber, setTableNumber] = useState("");
+const [orderType, setOrderType] = useState("Dine In");
+const [cart, setCart] = useState([]);
+const addItem = () => {
+
+    if (!selectedItem) {
+        alert("Please select a menu item");
+        return;
+    }
+
+    const menuItem = menu.find(item => item._id === selectedItem);
+
+    const newItem = {
+        menuItem: selectedItem,
+        name: menuItem.name,
+        price: menuItem.price,
+        quantity: Number(quantity)
     };
+
+    setCart([...cart, newItem]);
+
+    setSelectedItem("");
+    setQuantity(1);
+};
+   const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    if (cart.length === 0) {
+        alert("Please add at least one item.");
+        return;
+    }
+
+    try {
+
+       
+
+     const token = localStorage.getItem("token");
+
+const payload = {
+    items: cart.map(item => ({
+        menuItem: item.menuItem,
+        quantity: item.quantity
+    }))
+};
+
+if (id) {
+
+    await axios.put(
+        `http://localhost:5000/api/orders/${id}`,
+        payload,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+
+    alert("Order Updated Successfully!");
+
+} else {
+
+    await axios.post(
+        "http://localhost:5000/api/orders",
+        payload,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+
+    alert("Order Added Successfully!");
+}
+
+
+        setCart([]);
+        setSelectedItem("");
+        setQuantity(1);
+
+    } catch (err) {
+
+        console.log(err);
+
+        alert(err.response?.data?.message || "Failed to place order");
+
+    }
+
+};
+    useEffect(() => {
+
+    const fetchMenu = async () => {
+
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const response = await axios.get(
+                "http://localhost:5000/api/menu",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            setMenu(response.data);
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+    };
+
+    fetchMenu();
+
+}, []);
+useEffect(() => {
+
+    if (!id) return;
+
+    const fetchOrder = async () => {
+
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const response = await axios.get(
+                "http://localhost:5000/api/orders",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const order = response.data.find(o => o._id === id);
+
+            if (!order) return;
+
+            setCustomerName(order.user?.name || "");
+            setCart(
+                order.items.map(item => ({
+                    menuItem: item.menuItem._id,
+                    name: item.menuItem.name,
+                    price: item.menuItem.price,
+                    quantity: item.quantity
+                }))
+            );
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+    };
+
+    fetchOrder();
+
+}, [id]);
     return (
         <div className="Addorder-container">
             <Sidebar />
             <div className="addorder">
                 <div className="addordertop">
-                    <h1>📝Add Order</h1>
+                    <h1>
+    {id ? "✏️ Edit Order" : "📝 Add Order"}
+</h1>
                     <h3>Order ID</h3>
                 </div>
                 <div className="add-order">
@@ -31,26 +201,96 @@ function Addorder() {
                         <h2><MdGroups /> Order Detail</h2>
                         <form onSubmit={handleSubmit}>
                             <label htmlFor="Name">Customer Name</label>
-                            <input type="text" placeholder="Enter the Name of Customer"></input>
+                           <input
+type="text"
+placeholder="Enter the Name of Customer"
+value={customerName}
+onChange={(e)=>setCustomerName(e.target.value)}
+/>
+
 
                             <label htmlFor="number">Table Number</label>
-                            <input type="text" placeholder="Enter the Table Number"></input>
+                           <input
+type="text"
+placeholder="Enter the Table Number"
+value={tableNumber}
+onChange={(e)=>setTableNumber(e.target.value)}
+/>
 
+<label>Order Type</label>
 
-                            <select>
-                                <option value="Dine in">Dine IN</option>
-                                <option value="Take away">Take away</option>
-                            </select>
-                            <br></br>
+<select
+    value={orderType}
+    onChange={(e) => setOrderType(e.target.value)}
+>
+    <option value="Dine In">Dine In</option>
+    <option value="Take Away">Take Away</option>
+</select>
 
-                            <label htmlFor="Name">Item Name</label>
-                            <input type="text" placeholder="Enter the Name of Item"></input>
+<label>Menu Item</label>
 
-                            <label htmlFor="number">Number of Quantity</label>
-                            <input type="number" min="1" placeholder="Enter the Number of Quantity"></input>
-                            <button type="submit">
-                                Add Order
-                            </button>
+<select
+    value={selectedItem}
+    onChange={(e) => setSelectedItem(e.target.value)}
+>
+    <option value="">Select Item</option>
+
+    {menu.map((item) => (
+        <option
+            key={item._id}
+            value={item._id}
+        >
+            {item.name} - ₹{item.price}
+        </option>
+    ))}
+</select>
+
+<label>Quantity</label>
+
+<input
+
+type="number"
+
+min="1"
+
+value={quantity}
+
+onChange={(e)=>setQuantity(e.target.value)}
+
+/>
+                            
+                    <button
+type="button"
+onClick={addItem}
+>
+
+Add Item
+
+</button>
+<button type="submit">
+    {id ? "Update Order" : "Place Order"}
+</button>
+<h3>Selected Items</h3>
+
+{cart.map((item, index) => (
+
+    <div key={index}>
+
+        <p>
+            {item.name} × {item.quantity} = ₹{item.price * item.quantity}
+        </p>
+
+    </div>
+
+))}
+
+<h3>
+    Total: ₹
+    {cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    )}
+</h3>
                         </form>
                     </div>
                     <div className="add-ordercard">
