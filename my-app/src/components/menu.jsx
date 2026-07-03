@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 function Menu() {
   const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+
   const menuItems = [
     {
       id: 1,
       name: "Espresso",
-      price: 149, 
+      price: 149,
       image: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=500",
       desc: "Rich and bold classic espresso shot."
     },
@@ -47,22 +50,57 @@ function Menu() {
     }
   ];
 
-  
   const addToCart = (item) => {
-    setCart([...cart, item]); 
+    setCart([...cart, item]);
   };
 
- 
+  const removeFromCart = (index) => {
+    const updatedCart = [...cart];
+    updatedCart.splice(index, 1);
+    setCart(updatedCart);
+  };
+
   const clearCart = () => {
     setCart([]);
   };
 
-  return (
+  const placeOrder = async () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/api/orders",
+      {
+        items: cart,
+        total: cart.reduce(
+          (sum, item) => sum + item.price,0 ),
+      }
+    );
+
+    alert(response.data.message);
+
+    setCart([]);
+    setShowCart(false);
+
+  } catch (error) {
+    console.log(error);
+    alert("Order Failed!");
+  }
+};
+return (
     <div className="menu-page">
 
       <div className="menu-header">
         <h1>☕ Brew Bliss Cafe Menu</h1>
-        <div className="cart-box">
+
+        <div
+          className="cart-box"
+          onClick={() => setShowCart(true)}
+          style={{ cursor: "pointer" }}
+        >
           🛒 Cart : {cart.length} Items
         </div>
       </div>
@@ -75,12 +113,14 @@ function Menu() {
               alt={item.name}
               className="menu-image"
             />
+
             <div className="menu-content">
               <h3>{item.name}</h3>
               <p>{item.desc}</p>
+
               <div className="bottom-row">
                 <span className="price">₹{item.price}</span>
-              
+
                 <button
                   className="cart-btn"
                   onClick={() => addToCart(item)}
@@ -92,32 +132,88 @@ function Menu() {
           </div>
         ))}
       </div>
+      {/* ================= CART SIDEBAR ================= */}
 
-      {/* ===========================
-          ADDED: LIVE CART SECTION
-         =========================== */}
-      <div className="cart-summary-section">
-        <h2>🛍️ Selected Items in Cart</h2>
-        {cart.length === 0 ? (
-          <p className="empty-cart-msg">Your cart is empty. Add some delicious items!</p>
-        ) : (
-          <div>
-            <ul className="cart-items-list">
-              {cart.map((cartItem, index) => (
-                <li key={index} className="cart-item-row">
-                  <span>{cartItem.name}</span>
-                  <span className="cart-item-price">₹{cartItem.price}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <div className="cart-total-box">
-              <h3>Total Amount: ₹{cart.reduce((total, item) => total + item.price, 0)}</h3>
-              <button className="clear-cart-btn" onClick={clearCart}>Clear Cart</button>
+      {showCart && (
+        <>
+          <div
+            className="cart-overlay"
+            onClick={() => setShowCart(false)}
+          ></div>
+
+          <div className="cart-sidebar">
+
+            <div className="cart-sidebar-header">
+              <h2>🛒 Your Cart</h2>
+
+              <button
+                className="close-btn"
+                onClick={() => setShowCart(false)}
+              >
+                ✖
+              </button>
             </div>
+
+            {cart.length === 0 ? (
+              <p className="empty-cart-msg">
+                Your cart is empty.
+              </p>
+            ) : (
+              <>
+                <div className="cart-items">
+
+                  {cart.map((item, index) => (
+                    <div
+                      className="cart-item"
+                      key={index}
+                    >
+                      <div>
+                        <h4>{item.name}</h4>
+                        <p>₹{item.price}</p>
+                      </div>
+
+                      <button
+                        className="delete-btn"
+                        onClick={() => removeFromCart(index)}
+                      >
+                        ❌
+                      </button>
+                    </div>
+                  ))}
+
+                </div>
+
+                <div className="cart-footer">
+
+                  <h3>
+                    Total : ₹
+                    {cart.reduce(
+                      (total, item) => total + item.price,
+                      0
+                    )}
+                  </h3>
+
+                  <button
+                    className="order-btn"
+                    onClick={placeOrder}
+                  >
+                    Order Now
+                  </button>
+
+                  <button
+                    className="clear-cart-btn"
+                    onClick={clearCart}
+                  >
+                    Clear Cart
+                  </button>
+
+                </div>
+              </>
+            )}
+
           </div>
-        )}
-      </div>
+        </>
+      )}
 
     </div>
   );

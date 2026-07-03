@@ -6,6 +6,8 @@ const cors = require("cors");
 
 const menuRoutes = require("./routes/menuRoutes");
 const aboutRoutes = require("./routes/aboutRoutes");
+const contactRoutes = require("./routes/contactRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const app = express();
 
 // Middleware
@@ -17,7 +19,7 @@ app.use(express.json());
 
 // MongoDB Connection
 mongoose
-  .connect("mongodb+srv://deepikanagotra2006_db_user:deepi3003@cluster0.lsaknvg.mongodb.net/Cafe-BrewBliss?retryWrites=true&w=majority&appName=Cluster0")
+  .connect("mongodb+srv://deepikanagotra2006_db_user:gudiadeepi@cluster0.lsaknvg.mongodb.net/Cafe-BrewBliss?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => {
     console.log("🟢 MongoDB Connected Successfully");
   })
@@ -28,6 +30,8 @@ mongoose
 
 app.use("/api/menu", menuRoutes);
 app.use("/api/about", aboutRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/orders", orderRoutes);
 // Home Route
 app.get("/", (req, res) => {
   res.send("☕ Brew Bliss Cafe Backend is Running...");
