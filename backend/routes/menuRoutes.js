@@ -193,3 +193,4 @@ module.exports = router;
 // Menu.create()	Object {}	Create a new document
 // Menu.findByIdAndUpdate()	Object {}	Update a document by _id
 // Menu.findByIdAndDelete()	Object {}	Delete a document by _id
+

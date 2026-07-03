@@ -16,16 +16,7 @@ function Home() {
     
     </main>
   
-    <footer className="cafe-footer">
-        <div className="footer-info">
-          <p>📍 <b>Location:</b> Katra,J&k, Reasi, Near Central Park</p>
-          <p>📞 <b>Phone:</b> +91 9697711500</p>
-          <p>✉️ <b>Email:</b> support@brewblisscafe.com</p>
-        </div>
-        <div className="footer-bottom">
-          <p>&copy; 2026 BREW BLISS CAFE. All Rights Reserved.</p>
-        </div>
-      </footer>
+    
  </div>
   );
 }
