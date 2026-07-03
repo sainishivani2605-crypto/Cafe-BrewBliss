@@ -10,9 +10,14 @@ const Menu = require("../models/Menu");
 router.post("/", auth, async (req, res) => {
     try {
 
-        const { items } = req.body;
+     const {
+    items,
+    customerName,
+    tableNumber,
+    orderType
+} = req.body;
 
-        const user = req.user.id;
+const user = req.user.id;
         let totalPrice = 0;
         for(const item of items){
             const menuItem = await Menu.findById(item.menuItem);
@@ -23,12 +28,14 @@ router.post("/", auth, async (req, res) => {
             }
             totalPrice += menuItem.price*item.quantity;
         }
-            const order = await Order.create({
-                user,
-                items,
-                totalPrice
-        
-            });
+         const order = await Order.create({
+    user,
+    customerName,
+    tableNumber,
+    orderType,
+    items,
+    totalPrice
+});
             res.status(201).json({
                 message:"Order placed successfully",
                 order
