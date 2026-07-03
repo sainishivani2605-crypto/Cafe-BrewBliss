@@ -31,17 +31,21 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 97%;
+  height:60px;
+  width:97%;
   z-index: 1000;
-
 
 }
 
-.logo {
+.logo img{
   font-size: 24px;
   font-weight: bold;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
   letter-spacing: 2px;
   color: white;
+  border-radius: 50%;
 }
 
 .nav-links {
@@ -160,11 +164,15 @@ overflow: hidden;
 
 
 /* Common Footer Style for All Pages */
-.cafe-footer, .footer {
+ .footer {
   background-color: #4b2e2e;
   color: white;
   padding: 30px 20px;
   text-align: center;
+  width: 100%;
+  position: relative;
+  margin-top: auto;
+  z-index: 100;
 }
 
 .footer-info {

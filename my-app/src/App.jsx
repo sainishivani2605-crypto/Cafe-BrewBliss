@@ -10,7 +10,7 @@ function App() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="app-container">
       {/* --- NAVBAR --- */}
       <nav className="navbar">
         <div className="logo">
