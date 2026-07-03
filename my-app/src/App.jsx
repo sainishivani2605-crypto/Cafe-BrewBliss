@@ -11,12 +11,12 @@ function App() {
 
   return (
     <div>
-      {/* --- NAVBAR (Yeh hamesha har page par rahega) --- */}
+      {/* --- NAVBAR --- */}
       <nav className="navbar">
         <div className="logo">
           <img src={logoImg} alt="logo" className="navbar-logos" />
         </div>
-        
+
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/menu">Menu</Link></li>
@@ -24,14 +24,25 @@ function App() {
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 
-        {/* Agar login/register buttons hain toh unhe yahan navbar me rakh sakte hain */}
         <div className="nav-buttons">
-          <button onClick={() => navigate("/register")} className="cart-btn" style={{ marginRight: '10px' }}>Register</button>
-          <button onClick={() => navigate("/admin")} className="cart-btn">Login</button>
+          <button
+            onClick={() => navigate("/register")}
+            className="cart-btn"
+            style={{ marginRight: "10px" }}
+          >
+            Register
+          </button>
+
+          <button
+            onClick={() => navigate("/admin")}
+            className="cart-btn"
+          >
+            Login
+          </button>
         </div>
       </nav>
 
-      {/* --- PAGES CONTENT (Sirf yeh part badlega jab route change hoga) --- */}
+      {/* --- PAGES CONTENT --- */}
       <div className="page-content-wrapper">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -40,15 +51,21 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
+
+      {/* --- FOOTER --- */}
+      <footer className="footer">
+        <div className="footer-info">
+          <p>📍 Model Town, New Delhi, India</p>
+          <p>📞 +91 98765 43210</p>
+          <p>✉️ brewbliss@gmail.com</p>
+        </div>
+
+        <div className="footer-bottom">
+          <p>© 2026 Brew Bliss Cafe | All Rights Reserved</p>
+        </div>
+      </footer>
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
