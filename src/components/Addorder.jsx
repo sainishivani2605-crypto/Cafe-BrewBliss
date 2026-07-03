@@ -63,6 +63,10 @@ const addItem = () => {
      const token = localStorage.getItem("token");
 
 const payload = {
+    customerName,
+    tableNumber,
+    orderType,
+
     items: cart.map(item => ({
         menuItem: item.menuItem,
         quantity: item.quantity
@@ -165,7 +169,8 @@ useEffect(() => {
 
             if (!order) return;
 
-            setCustomerName(order.user?.name || "");
+           setTableNumber(order.tableNumber || "");
+setOrderType(order.orderType || "Dine In");
             setCart(
                 order.items.map(item => ({
                     menuItem: item.menuItem._id,
@@ -184,6 +189,7 @@ useEffect(() => {
     };
 
     fetchOrder();
+   
 
 }, [id]);
     return (

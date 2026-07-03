@@ -36,7 +36,7 @@ const CustomerLayout = () => {
       <nav className="navbar">
         <div className="logo">
           <img src={logoImg} alt="logo" className="navbar-logo" />
-          <span>BREW BLISS CAFE</span>
+         
         </div>
 
         <ul className="nav-links">
