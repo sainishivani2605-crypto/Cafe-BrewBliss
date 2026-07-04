@@ -110,6 +110,16 @@ color: rgb(102, 19, 19);
 
 
 }
+#deletebtn{
+    text-align: center;
+    height: 2rem;
+    width: 5rem;
+    margin-left: 80px;
+    border: 1px;
+    border-radius: 20px;
+    background-color: rgb(189, 187, 187);
+}
+
 .Totmenumid-card img{
     width: 250px;
     height: 250px;

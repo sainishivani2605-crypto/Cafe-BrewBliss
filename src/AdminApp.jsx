@@ -27,6 +27,7 @@ import logoImg from "../my-app/src/logo.jpeg";
 
 
 import { Outlet, Link } from "react-router-dom";
+import MyOrders from "../my-app/src/components/MyOrders";
 
 const CustomerLayout = () => {
   const navigate = useNavigate();
@@ -62,9 +63,7 @@ function Login() {
   const navigate = useNavigate();
 
  const handleLogin = async () => {
-
     try {
-
         const response = await axios.post(
             "http://localhost:5000/api/users/login",
             {
@@ -72,32 +71,26 @@ function Login() {
                 password
             }
         );
+        console.log(response.data);
 
-        localStorage.setItem(
-            "token",
-            response.data.token
-        );
+        localStorage.setItem("token", response.data.token);
 
         alert("Login Successful");
 
-        navigate("/dashboard");
+        if (response.data.user.role === "admin") {
+            navigate("/dashboard");
+        } else {
+            navigate("/menu");
+        }
 
-      } //catch (err) {
+    } catch (err) {
+        console.log("Full Error:", err);
+        console.log("Response:", err.response);
+        console.log("Data:", err.response?.data);
+        console.log("Status:", err.response?.status);
 
-    //     alert(
-    //         err.response?.data?.message || "Login Failed"
-    //     );
-
-    // }
-    catch (err) {
-    console.log("Full Error:", err);
-    console.log("Response:", err.response);
-    console.log("Data:", err.response?.data);
-    console.log("Status:", err.response?.status);
-
-    alert(err.response?.data?.message || "Login Failed");
-}
-
+        alert(err.response?.data?.message || "Login Failed");
+    }
 };
 
   return (
@@ -153,6 +146,7 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/myorders" element={<MyOrders />} />
       </Route>
 
    
@@ -169,6 +163,7 @@ function App() {
       <Route path="/addorder" element={<Addorder />} />
      
 <Route path="/addorder/:id" element={<Addorder />} />
+<Route path="/editorder/:id" element={<Addorder />} />
     </Routes>
   );
 }

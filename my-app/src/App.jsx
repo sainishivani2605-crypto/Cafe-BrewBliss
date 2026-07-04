@@ -5,6 +5,7 @@ import Menu from './components/Menu';
 import About from './components/About';
 import Contact from './components/Contact';
 import logoImg from './logo.jpeg';
+import MyOrders from './components/MyOrders';
 
 function App() {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+           <Route path="/myorders" element={<MyOrders />} />
         </Routes>
       </div>
 

@@ -260,12 +260,12 @@ const filteredOrders = orders.filter((order) => {
     <div className="end">
 <div className="end">
 
-    <button
-        id="edit"
-        onClick={() => navigate(`/addorder/${order._id}`)}
-    >
-        Edit
-    </button>
+     <button
+    id="edit"
+    onClick={() => navigate(`/editorder/${order._id}`)}
+>
+    Edit
+</button>
 
     <button
         id="comp"

@@ -5,6 +5,7 @@ import cup from "../assets/cup2.avif";
 import backGround from "../assets/backgroung.jpg";
 import cafeshopimg from "../assets/cafeshop.jpg";
 import "../style/Register.css";
+import axios from "axios";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -13,15 +14,39 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
+
     if (!name || !email || !password) {
-      alert("Please fill all fields");
-      return;
+        alert("Please fill all fields");
+        return;
     }
 
-    alert("Welcome to Cafe Brew Bliss ☕");
-    navigate("/");
-  };
+    try {
+
+        const response = await axios.post(
+            "http://localhost:5000/api/users/register",
+            {
+                name,
+                email,
+                password
+            }
+        );
+
+        alert(response.data.message);
+
+        navigate("/admin");
+
+    } catch (err) {
+
+        console.log(err.response?.data);
+
+        alert(
+            err.response?.data?.message || "Registration Failed"
+        );
+
+    }
+
+};
 
   return (
     <div className="register-container">

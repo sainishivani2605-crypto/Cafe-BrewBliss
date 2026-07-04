@@ -168,7 +168,7 @@ useEffect(() => {
             const order = response.data.find(o => o._id === id);
 
             if (!order) return;
-
+setCustomerName(order.customerName || "");
            setTableNumber(order.tableNumber || "");
 setOrderType(order.orderType || "Dine In");
             setCart(

@@ -3,6 +3,7 @@ const router = express.Router();
 const Menu = require("../models/Menu");
 const auth = require("../middleware/auth");
 const adminOnly = require("../middleware/adminOnly");
+const upload = require("../middleware/upload");
 // let menu = [
 //     {
 //         id: 1,
@@ -46,13 +47,15 @@ catch(err){
 
 
 // POST a new menu item
-router.post("/",auth,adminOnly,async (req, res) => {
+router.post("/", auth, adminOnly, upload.single("image"), async (req, res) => {
     try{
 
-    const newItem = await Menu.create({
-        name: req.body.name,
-        price: req.body.price
-    });
+const newItem = await Menu.create({
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    image: req.file ? req.file.filename : ""
+});
     
 
     res.status(201).json({
@@ -64,6 +67,9 @@ catch(err){
     res.status(500).json({
         message: err.message
     });
+    console.log(err);
+console.log(err.response);
+console.log(err.message);
 }
 });
 

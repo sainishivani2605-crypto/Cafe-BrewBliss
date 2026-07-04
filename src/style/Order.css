@@ -100,6 +100,7 @@
 .dine{
     display: flex;
     gap: 60px;
+    flex-wrap: wrap;
 }
 .dinein{
     margin-top: 40px;
@@ -112,6 +113,7 @@
     width: 350px;
     height: auto;
     border-radius: 15px;
+    
 }
 .up{
     background-color:  rgb(102, 19, 19);

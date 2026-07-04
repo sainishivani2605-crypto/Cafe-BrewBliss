@@ -142,7 +142,7 @@
         padding: 20px;
         border-radius: 10px;
         margin-left: 14px;
-        height: 270px;
+        height: auto;
         width: 405px;
         justify-content: center;
         align-items: center;

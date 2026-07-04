@@ -125,7 +125,10 @@ router.put("/:id", auth, adminOnly, async (req, res) => {
 
     try {
 
-        const { items } = req.body;
+        const {items, customerName,
+tableNumber,
+orderType  } = req.body;
+  
 
         let totalPrice = 0;
 
@@ -144,14 +147,16 @@ router.put("/:id", auth, adminOnly, async (req, res) => {
 
         const order = await Order.findByIdAndUpdate(
             req.params.id,
-            {
+            {customerName,
+tableNumber,
+orderType,
                 items,
                 totalPrice
             },
             {
                 new: true
             }
-        );
+        ).populate("items.menuItem", "name price");
 
         if (!order) {
             return res.status(404).json({
