@@ -147,6 +147,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/myorders" element={<MyOrders />} />
+
+       
       </Route>
 
    
@@ -161,6 +163,7 @@ function App() {
       <Route path="/reply" element={<Reply />} />
       <Route path="/staff" element={<Staff />} />
       <Route path="/addorder" element={<Addorder />} />
+       <Route path="/add-menu/:id" element={<AddMenu />} />
      
 <Route path="/addorder/:id" element={<Addorder />} />
 <Route path="/editorder/:id" element={<Addorder />} />

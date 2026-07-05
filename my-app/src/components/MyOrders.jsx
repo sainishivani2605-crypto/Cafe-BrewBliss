@@ -4,88 +4,126 @@ import axios from "axios";
 function MyOrders() {
 
     const [orders, setOrders] = useState([]);
-useEffect(() => {
 
-    const fetchOrders = async () => {
+    useEffect(() => {
 
-        try {
+        const fetchOrders = async () => {
 
-            const token = localStorage.getItem("token");
+            try {
 
-            const response = await axios.get(
-                "http://localhost:5000/api/orders/my-orders",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
+                const token = localStorage.getItem("token");
+
+                const response = await axios.get(
+                    "http://localhost:5000/api/orders/my-orders",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
                     }
-                }
-            );
+                );
 
-            setOrders(response.data);
+                setOrders(response.data);
+              console.log(response.data);
 
-        } catch (err) {
+            } catch (err) {
 
-            console.log(err);
+                console.log(err);
 
-        }
+            }
 
-    };
+        };
 
-    fetchOrders();
+        fetchOrders();
 
-}, []);
-  
-       return (
-    <div className="my-orders">
+    }, []);
 
-        <h1>My Orders</h1>
+    return (
 
-        {orders.length === 0 ? (
+        <div style={{ padding: "40px" }}>
 
-            <h3>No Orders Yet</h3>
+            <h1>My Orders</h1>
 
-        ) : (
+            {
+                orders.length === 0 ?
 
-            orders.map((order) => (
+                <h3>No Orders Yet</h3>
 
-                <div
-                    key={order._id}
-                    className="order-card"
-                >
+                :
 
-                    <h3>Order #{order._id.slice(-5)}</h3>
+                orders.map(order => (
 
-                    {order.items.map((item, index) => (
 
-                        <p key={index}>
-                            {item.menuItem?.name}
-                            {" "}
-                            ×
-                            {" "}
-                            {item.quantity}
+                    <div
+                        key={order._id}
+                        style={{
+                            border: "1px solid gray",
+                            borderRadius: "10px",
+                            padding: "20px",
+                            marginBottom: "20px"
+                        }}
+                    >
+
+                       <h3>Order ID</h3>
+
+<p>{order._id}</p>
+
+<p>
+    <strong>Ordered On:</strong>{" "}
+    {new Date(order.createdAt).toLocaleDateString()}
+</p>
+
+<p>
+    <strong>Status:</strong>{" "}
+    <span
+        style={{
+            color:
+                order.status === "Delivered"
+                    ? "green"
+                    : order.status === "Preparing"
+                    ? "orange"
+                    : "red",
+            fontWeight: "bold"
+        }}
+    >
+        {order.status}
+    </span>
+</p>
+                        <p>
+
+                            <strong>Total:</strong>
+
+                            ₹{order.totalPrice}
+
                         </p>
 
-                    ))}
+                        <h4>Items</h4>
 
-                    <h4>
-                        Total: ₹{order.totalPrice}
-                    </h4>
+                        {
 
-                    <h4>
-                        Status:
-                        {" "}
-                        {order.status}
-                    </h4>
+                            order.items.map(item => (
 
-                </div>
+                                <div key={item._id}>
 
-            ))
+{item.menuItem?.name || "Deleted Item"}
+                                    {" × "}
 
-        )}
+                                    {item.quantity}
 
-    </div>
-);
-   
+                                </div>
+
+                            ))
+
+                        }
+
+                    </div>
+
+                ))
+
+            }
+
+        </div>
+
+    );
 
 }
 

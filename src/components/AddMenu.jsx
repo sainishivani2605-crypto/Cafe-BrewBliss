@@ -7,7 +7,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../style/AddMenu.css";
 import { useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 function AddMenu() {
+    const navigate = useNavigate();
+    const { id } = useParams();
   const [name, setName] = useState("");
 const [price, setPrice] = useState("");
 const [description, setDescription] = useState("");
@@ -25,18 +30,38 @@ const handleSave = async () => {
         formData.append("description", description);
         formData.append("image", image);
 
-        const response = await axios.post(
-            "http://localhost:5000/api/menu",
-            formData,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "multipart/form-data"
-                }
+  let response;
+
+if (id) {
+
+    response = await axios.put(
+        `http://localhost:5000/api/menu/${id}`,
+        formData,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data"
             }
-        );
+        }
+    );
+
+} else {
+
+    response = await axios.post(
+        "http://localhost:5000/api/menu",
+        formData,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data"
+            }
+        }
+    );
+
+}
 
         alert(response.data.message);
+        navigate("/managemenu");
 
         setName("");
         setPrice("");
@@ -53,6 +78,33 @@ const handleSave = async () => {
 }
 
 };
+useEffect(() => {
+
+    if (!id) return;
+
+    const fetchItem = async () => {
+
+        try {
+
+            const response = await axios.get(
+                `http://localhost:5000/api/menu/${id}`
+            );
+
+            setName(response.data.name);
+            setPrice(response.data.price);
+            setDescription(response.data.description);
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+    };
+
+    fetchItem();
+
+}, [id]);
   return (
     <div className="Add-container">
         <Sidebar />
@@ -99,9 +151,8 @@ const handleSave = async () => {
 <br></br>
             <label className="A" htmlFor="food status">Status</label>
             <input className="B" type="text" placeholder="Enter the Status"></input>
-
 <button onClick={handleSave}>
-    Save
+    {id ? "Update Item" : "Save"}
 </button>
             <button>Cancel</button>
 

@@ -126,27 +126,50 @@ catch(err){
 });
 
 //Put changes in an existing 
-router.put("/:id",auth,adminOnly,async (req, res) =>{
-    try{
-    const id =req.params.id;
-    const {name,price} = req.body;
-    const item =await Menu.findByIdAndUpdate(id, { name, price }, { new: true });
-    if(!item){
-        return res.status(404).json({
-    message: "Item not found"
-});
-    }
-   res.json({
-    message: "Item updated successfully",
-    item
-});}
-catch(err){
-    res.status(500).json({
-        message: err.message
-    });
-}
+router.put(
+    "/:id",
+    auth,
+    adminOnly,
+    upload.single("image"),
+    async (req, res) => {
+        try {
 
-});
+            const updateData = {
+                name: req.body.name,
+                price: req.body.price,
+                description: req.body.description
+            };
+
+            if (req.file) {
+                updateData.image = req.file.filename;
+            }
+
+            const item = await Menu.findByIdAndUpdate(
+                req.params.id,
+                updateData,
+                { new: true }
+            );
+
+            if (!item) {
+                return res.status(404).json({
+                    message: "Item not found"
+                });
+            }
+
+            res.json({
+                message: "Item updated successfully",
+                item
+            });
+
+        } catch (err) {
+
+            res.status(500).json({
+                message: err.message
+            });
+
+        }
+    }
+);
 
 function logger(req, res,next){
     console.log(`${req.method} ${req.url}`);

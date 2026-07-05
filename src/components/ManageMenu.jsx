@@ -130,6 +130,11 @@ const handleDelete = async (id) => {
         >Delete
             
         </button>
+        <button
+    onClick={() => navigate(`/add-menu/${item._id}`)}
+>
+    Edit
+</button>
 
     </div>
 ))}
