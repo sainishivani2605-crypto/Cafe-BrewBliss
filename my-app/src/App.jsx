@@ -4,8 +4,9 @@ import Home from './components/Home';
 import Menu from './components/Menu';
 import About from './components/About';
 import Contact from './components/Contact';
-import logoImg from './logo.jpeg';
+import Review from './components/Review';   // ✅ Import Review
 import MyOrders from './components/MyOrders';
+import logoImg from './logo.jpeg';
 
 function App() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function App() {
           <li><Link to="/menu">Menu</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/review">Review</Link></li>
         </ul>
 
         <div className="nav-buttons">
@@ -50,7 +52,8 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-           <Route path="/myorders" element={<MyOrders />} />
+          <Route path="/review" element={<Review />} />
+          <Route path="/myorders" element={<MyOrders />} />
         </Routes>
       </div>
 
