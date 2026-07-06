@@ -105,6 +105,7 @@ color: rgb(102, 19, 19);
         background-color: rgb(245, 214, 214);
         width: 250px;
         margin-top: 40px;
+       
         border-radius: 15px;
 
 
@@ -114,10 +115,13 @@ color: rgb(102, 19, 19);
     text-align: center;
     height: 2rem;
     width: 5rem;
-    margin-left: 80px;
     border: 1px;
     border-radius: 20px;
-    background-color: rgb(189, 187, 187);
+    background-color: rgb(98, 53, 53);
+    color:aliceblue
+}
+#deletebtn:hover{
+      background-color: rgb(48, 18, 18);
 }
 
 .Totmenumid-card img{
@@ -139,4 +143,27 @@ text-align: start;
 .totalmenu #vew:hover{
     cursor: pointer;
     color: chocolate;
+}
+#editmenu{
+  
+    text-align: center;
+    height: 2rem;
+    width: 5rem;
+    border: 1px;
+    border-radius: 20px;
+    background-color: rgb(98, 53, 53);
+    color: aliceblue;
+
+}
+#editmenu:hover{
+    background-color: rgb(48, 18, 18);
+
+}
+.buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.buttons:hover{
+  
 }

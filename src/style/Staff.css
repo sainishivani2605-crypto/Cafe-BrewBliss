@@ -144,3 +144,17 @@ color: chocolate;
 .team-card button:hover{
     background-color: #c1bfbf;
 }
+.Editbuttn{
+    width: 4rem;
+background-color: #ffffff;
+    height: auto;
+
+}
+.Editbuttn:hover{
+    cursor: pointer;
+    background-color: #b0b0b0;
+    transform: scale(1.1);
+    border: 1px;
+    border-radius: 20px;
+    
+}

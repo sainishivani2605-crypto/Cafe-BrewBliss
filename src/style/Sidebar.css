@@ -6,11 +6,15 @@
     color:white;
     margin: 0;
     padding: 0;
-    
     border-radius: 10px;
     position: fixed;
 
 }
+.logoimg{
+    display: flex;
+    flex-direction: column;
+}
+
 .sidebar h2{
     text-align: center;
     color: rgb(99, 52, 52);

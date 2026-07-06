@@ -6,23 +6,38 @@ const Staff = require("../models/Staff");
 
 router.post("/", auth ,adminOnly, async(req,res)=>{
     try{
-        const{name,role,experience, shift} = req.body;
-        const staff = await Staff.create({
-            name,
-            role,
-            experience,
-            shift
+        const {
+    name,
+    role,
+    experience,
+    shift,
+    status,
+    joiningDate,
+    phone
+} = req.body;
 
-        });
+const staff = await Staff.create({
+    name,
+    role,
+    experience,
+    shift,
+    status,
+    joiningDate,
+    phone
+});
         res.status(201).json({
             message:"Staff member created successfully",
             staff
         });
-    }catch(err){
-        res.status(500).json({
-            message:err.message
-        });
-    }
+    }catch (err) {
+
+    console.error("Attendance Error:", err);
+
+    res.status(500).json({
+        message: err.message
+    });
+
+}
 });
 router.get("/",auth,adminOnly, async(req,res)=>{
     try{
@@ -33,6 +48,27 @@ router.get("/",auth,adminOnly, async(req,res)=>{
         res.status(500).json({
             message: err.message
         });
+    }
+});
+router.get("/:id", auth, adminOnly, async (req, res) => {
+    try {
+
+        const staff = await Staff.findById(req.params.id);
+
+        if (!staff) {
+            return res.status(404).json({
+                message: "Staff not found"
+            });
+        }
+
+        res.json(staff);
+
+    } catch (err) {
+
+        res.status(500).json({
+            message: err.message
+        });
+
     }
 });
 router.put("/:id",auth,adminOnly, async (req,res)=>{

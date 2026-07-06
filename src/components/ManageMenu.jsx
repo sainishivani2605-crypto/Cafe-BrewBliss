@@ -7,23 +7,7 @@ import "../style/ManageMenu.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
  import { useNavigate } from "react-router-dom";
- import burger from "../assets/burger.jpg";
- import coffee from "../assets/coffee.jpg";
- import pizza from "../assets/pizza.jpg";
- import sandwich1 from "../assets/sandwich.jpg";
-  import sandwich from "../assets/sandwich2.jpg";
-   import sandwich3 from "../assets/vegiesandwich.jpg";
-    import Burger1 from "../assets/Classic_Cheese_Burger_.jpg";
-  import Burger2 from "../assets/Paneer_Tikka_Burger_.jpg";
-   import Burger3 from "../assets/Veggie_Aloo_Tikki_Burger_.jpg";
-     import coffee1 from "../assets/cappuccino.jpg";
-  import coffee2 from "../assets/coffee.jpg";
-   import coffee3 from "../assets/espresso.jpg";
-     import mocha from "../assets/mocha.jpg";
-  import Latte from "../assets/latte.jpg";
-   import vanillalatte from "../assets/vanillaicedlatte.jpg";
-    import frape from "../assets/frappe.jpg";
-     import coconutlatte from "../assets/Coconut-Iced-Espresso.jpg";
+
 
 
 function ManageMenu(){
@@ -124,17 +108,18 @@ const handleDelete = async (id) => {
         <p>{item.name}</p>
         <p>₹{item.price}</p>
         <p>{item.description}</p>
-
+<div className="buttons">
         <button id="deletebtn"
             onClick={() => handleDelete(item._id)}
         >Delete
             
         </button>
-        <button
+        <button id="editmenu"
     onClick={() => navigate(`/add-menu/${item._id}`)}
 >
     Edit
 </button>
+</div>
 
     </div>
 ))}

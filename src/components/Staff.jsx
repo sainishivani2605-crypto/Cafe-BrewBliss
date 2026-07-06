@@ -4,8 +4,10 @@ import '../style/mediaqueries.css';
 import { Link, Navigate } from "react-router-dom";
 import cupimg from "../assets/cup2.avif";
 import "../style/Staff.css";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch,FaPlus} from "react-icons/fa";
  import { useNavigate } from "react-router-dom";
+ import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 import {
@@ -15,7 +17,88 @@ import {
   MdPersonAdd,   // New Joiners
 } from "react-icons/md";
 function Staff(){
+  const [attendance, setAttendance] = useState([]);
+  const [staff, setStaff] = useState([]);
    const navigate = useNavigate();
+
+const handleAddStaff = () => {
+    navigate("/addstaff");
+};
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+
+        try {
+
+            const token = localStorage.getItem("token");
+
+            // Fetch Staff
+            const staffResponse = await axios.get(
+                "http://localhost:5000/api/staff",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            setStaff(staffResponse.data);
+
+            // Fetch Attendance
+            const attendanceResponse = await axios.get(
+                "http://localhost:5000/api/attendance",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            setAttendance(attendanceResponse.data);
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+    };
+
+    fetchData();
+
+}, []);
+useEffect(() => {
+
+    const fetchAttendance = async () => {
+
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const response = await axios.get(
+                "http://localhost:5000/api/attendance",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            setAttendance(response.data);
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+    };
+
+    fetchAttendance();
+
+}, []);
+
     return(
         <div className="Staff-container">
             <Sidebar />
@@ -23,34 +106,45 @@ function Staff(){
                 <div className="staff">
                     <h1 id="managestaff">Manage Staff</h1>
                     <img src={cupimg} />
-                    <button>Add Staff</button>
-                    <div className="input">
-                             <label htmlFor="search"></label>
-                                <FaSearch className="search-icon" />
-                                <input className="search" type="search" placeholder="Search"></input>
-                                </div>
+                    <button onClick={handleAddStaff}>Add Staff</button>
+         <button
+    className="attendance-btn"
+    onClick={() => navigate("/attendance")}
+>
+    <FaPlus />
+    Mark Attendance
+</button>
+                 
                                
                 </div>
                 <div className="Staff-card">
                     <div className="staffcard">
                         <h2><MdGroups />Total Employee</h2>
-                        <p>30</p>
-                    </div>
+<p>{staff.length}</p>                    </div>
 
                        <div className="staffcard">
                         <h2><MdVerifiedUser />Active Staff</h2>
-                        <p>25</p>
-                    </div>
+<p>{staff.filter(s => s.status === "Active").length}</p>                    </div>
 
                        <div className="staffcard">
                         <h2><MdEventBusy /> On Leave</h2>
-                        <p>2</p>
-                    </div>
+<p>{staff.filter(s => s.status === "On Leave").length}</p>                    </div>
 
                        <div className="staffcard">
                         <h2><MdPersonAdd /> New Joiner</h2>
-                        <p>3</p>
-                    </div>
+<p>
+{
+staff.filter(s => {
+
+const days =
+(Math.abs(new Date() - new Date(s.joiningDate))) /
+(1000 * 60 * 60 * 24);
+
+return days <= 30;
+
+}).length
+}
+</p>                    </div>
             </div>
 
             <div className="attendance-container">
@@ -59,146 +153,145 @@ function Staff(){
   <table>
     <thead>
       <tr>
-        <th>Employee ID</th>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Date</th>
-        <th>Check In</th>
-        <th>Check Out</th>
-        <th>Status</th>
+      <th>Employee ID</th>
+<th>Name</th>
+<th>Role</th>
+<th>Date</th>
+<th>Check In</th>
+<th>Check Out</th>
+<th>Hours</th>
+<th>Status</th>
+<th>Action</th>
       </tr>
     </thead>
 
-    <tbody>
-      <tr>
-        <td>EMP001</td>
-        <td>Rahul Kumar</td>
-        <td>Barista</td>
-        <td>20-06-2026</td>
-        <td>09:00 AM</td>
-        <td>06:00 PM</td>
-        <td>Present</td>
-      </tr>
+   <tbody>
 
-      <tr>
-        <td>EMP002</td>
-        <td>Priya Sharma</td>
-        <td>Cashier</td>
-        <td>20-06-2026</td>
-        <td>-</td>
-        <td>-</td>
-        <td>Absent</td>
-      </tr>
+{
+attendance.map(record => (
 
-      <tr>
-        <td>EMP003</td>
-        <td>Amit Singh</td>
-        <td>Chef</td>
-        <td>20-06-2026</td>
-        <td>10:00 AM</td>
-        <td>07:00 PM</td>
-        <td>Present</td>
-      </tr>
+<tr key={record._id}>
 
-        <tr>
-        <td>EMP003</td>
-        <td>Amrita Bhati</td>
-        <td>Chef</td>
-        <td>20-06-2026</td>
-        <td>10:00 AM</td>
-        <td>07:00 PM</td>
-        <td>Present</td>
-      </tr>
+    <td>{record.staff._id.slice(-6).toUpperCase()}</td>
 
-        <tr>
-        <td>EMP003</td>
-        <td>Kanika Rao</td>
-        <td>Manager</td>
-        <td>20-06-2026</td>
-        <td>10:00 AM</td>
-        <td>07:00 PM</td>
-        <td>Present</td>
-      </tr>
+    <td>{record.staff.name}</td>
 
-        <tr>
-        <td>EMP003</td>
-        <td>Shivam Singh</td>
-        <td>Waiter</td>
-        <td>20-06-2026</td>
-        <td>10:00 AM</td>
-        <td>07:00 PM</td>
-        <td>Present</td>
-      </tr>
-      
-    </tbody>
+    <td>{record.staff.role}</td>
+
+    <td>{new Date(record.date).toLocaleDateString()}</td>
+
+    <td>{record.checkIn || "-"}</td>
+
+    <td>{record.checkOut || "-"}</td>
+
+    <td>
+        {
+            record.checkIn && record.checkOut
+                ? (() => {
+
+                    const [inHour, inMinute] = record.checkIn.split(":").map(Number);
+                    const [outHour, outMinute] = record.checkOut.split(":").map(Number);
+
+                    let inMinutes = inHour * 60 + inMinute;
+                    let outMinutes = outHour * 60 + outMinute;
+
+                    // If checkout is after midnight
+                    if (outMinutes < inMinutes) {
+                        outMinutes += 24 * 60;
+                    }
+
+                    const hours = ((outMinutes - inMinutes) / 60).toFixed(1);
+
+                    return `${hours} hrs`;
+
+                })()
+                : "-"
+        }
+    </td>
+
+    <td>
+        <span
+            style={{
+                color:
+                    record.status === "Present"
+                        ? "green"
+                        : record.status === "Absent"
+                        ? "red"
+                        : "orange",
+                fontWeight: "bold"
+            }}
+        >
+            {record.status}
+        </span>
+    </td>
+
+<td>
+<div className="Editbuttns">
+<button>Edit</button>
+
+<button>Delete</button>
+</div>
+</td>
+
+</tr>
+
+))
+}
+
+</tbody>
 
   </table>
   <p id="Vieww">View All</p>
 </div>
 <h2 id="Detail">Details of Staff</h2>
 <div className="Aboutteam">
-    <div className="team-card">
-        <h2 id="NameofStaff">Kanika Rao</h2>
-        <p>MANAGER</p>
-        <p>Experience: 5yr</p>
-        <h3 id="Rating">4.5⭐</h3>
-  
 
-    </div>
+{
+    staff.map(member => (
 
-    <div className="team-card">
-        <h2 id="NameofStaff">Priya Sharma</h2>
-        <p>CASHIER</p>
-        <p>Experience: 3yr</p>
-        <h3 id="Rating">4.4⭐</h3>
-        
+        <div className="team-card" key={member._id}>
 
-    </div>
+            <h2 id="NameofStaff">
+                {member.name}
+            </h2>
 
-    <div className="team-card">
-        <h2 id="NameofStaff">Amit Singh </h2>
-        <p>CHEF</p>
-        <p>Experience: 6yr</p>
-        <h3 id="Rating">4.5⭐</h3>
-       
+            <p>{member.role.toUpperCase()}</p>
 
-    </div>
+            <p>
+                Experience: {member.experience} yr
+            </p>
 
-    <div className="team-card">
-        <h2 id="NameofStaff">Amrita Bhati</h2>
-        <p>CHEF</p>
-        <p>Experience: 5yr</p>
-        <h3 id="Rating">4.5⭐</h3>
-     
+            <p>
+                Shift: {member.shift}
+            </p>
 
-    </div>
+            <p>
+                Status:
+                {" "}
+                <span
+                    style={{
+                        color:
+                            member.status === "Active"
+                                ? "green"
+                                : "orange",
+                        fontWeight: "bold"
+                    }}
+                >
+                    {member.status}
+                </span>
+            </p>
 
-    <div className="team-card">
-        <h2 id="NameofStaff">Rahul Kumar</h2>
-        <p>BARISTA</p>
-        <p>Experience: 4yr</p>
-        <h3 id="Rating">4.1⭐</h3>
- 
+            <p>
+                Joined:
+                {" "}
+                {new Date(member.joiningDate).toLocaleDateString()}
+            </p>
 
-    </div>
+        </div>
 
-     <div className="team-card">
-        <h2 id="NameofStaff">Shivam Singh</h2>
-        <p>WAITER</p>
-        <p>Experience: 2yr</p>
-        <h3 id="Rating">4.0⭐</h3>
-        
+    ))
+}
 
-    </div>
-
-      <div className="team-card">
-        <h2 id="NameofStaff">Anshul Singh</h2>
-        <p>CHEF</p>
-        <p>Experience: 4yr</p>
-        <h3 id="Rating">4.0⭐</h3>
-       
-
-    </div>
 </div>
 
             </div>

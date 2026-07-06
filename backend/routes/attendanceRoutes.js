@@ -25,6 +25,16 @@ router.post("/", auth, adminOnly, async (req, res) => {
                 message: "Staff not found"
             });
         }
+        const existingAttendance = await Attendance.findOne({
+    staff,
+    date
+});
+
+if (existingAttendance) {
+    return res.status(400).json({
+        message: "Attendance already marked for this date"
+    });
+}
 
         const attendance = await Attendance.create({
             staff,
@@ -50,8 +60,9 @@ router.post("/", auth, adminOnly, async (req, res) => {
 router.get("/", auth, adminOnly, async (req, res) => {
     try {
 
-        const attendance = await Attendance.find()
-            .populate("staff", "name role experience shift");
+      const attendance = await Attendance.find()
+    .populate("staff", "name role experience shift")
+    .sort({ date: -1 });
 
         res.json(attendance);
 
@@ -66,11 +77,23 @@ router.get("/", auth, adminOnly, async (req, res) => {
 router.put("/:id", auth, adminOnly, async (req, res) => {
     try {
 
-        const attendance = await Attendance.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        );
+const {
+    checkIn,
+    checkOut,
+    status
+} = req.body;
+
+const attendance = await Attendance.findByIdAndUpdate(
+    req.params.id,
+    {
+        checkIn,
+        checkOut,
+        status
+    },
+    {
+        new: true
+    }
+);
 
         if (!attendance) {
             return res.status(404).json({

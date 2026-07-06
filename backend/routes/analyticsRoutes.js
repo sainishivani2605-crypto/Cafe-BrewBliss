@@ -7,7 +7,89 @@ const Order = require("../models/Order");
 const Menu = require("../models/Menu");
 const Review = require("../models/Review");
 const Staff = require("../models/Staff");
+const Order = require("../models/Order");
 
+router.get("/today-sales", auth, adminOnly, async (req, res) => {
+    try {
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        const yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1);
+
+        // Today's orders
+        const todayOrdersData = await Order.find({
+            createdAt: {
+                $gte: today,
+                $lt: tomorrow
+            }
+        });
+
+        // Yesterday's orders
+        const yesterdayOrdersData = await Order.find({
+            createdAt: {
+                $gte: yesterday,
+                $lt: today
+            }
+        });
+
+        // Revenue
+        const todayRevenue = todayOrdersData.reduce(
+            (sum, order) => sum + order.totalPrice,
+            0
+        );
+
+        const yesterdayRevenue = yesterdayOrdersData.reduce(
+            (sum, order) => sum + order.totalPrice,
+            0
+        );
+
+        const todayOrders = todayOrdersData.length;
+        const yesterdayOrders = yesterdayOrdersData.length;
+
+        const revenueGrowth =
+            yesterdayRevenue === 0
+                ? 100
+                : Number(
+                      (
+                          ((todayRevenue - yesterdayRevenue) /
+                              yesterdayRevenue) *
+                          100
+                      ).toFixed(1)
+                  );
+
+        const orderGrowth =
+            yesterdayOrders === 0
+                ? 100
+                : Number(
+                      (
+                          ((todayOrders - yesterdayOrders) /
+                              yesterdayOrders) *
+                          100
+                      ).toFixed(1)
+                  );
+
+        res.json({
+            todayRevenue,
+            yesterdayRevenue,
+            todayOrders,
+            yesterdayOrders,
+            revenueGrowth,
+            orderGrowth
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+            message: err.message
+        });
+
+    }
+});
 router.get("/", auth, adminOnly, async (req,res)=>{
     try{
         const totalCustomers = await User.countDocuments({

@@ -15,11 +15,11 @@ const staffSchema = new mongoose.Schema({
         type:Number,
         required: true,
     },
-    shift:{
-        type: String,
-        trim:true,
-        required:true
-    },
+  shift: {
+    type: String,
+    enum: ["Morning", "Evening", "Night"],
+    required: true
+},
     status:{
         type:String,
         enum:["Active", "On Leave"],
@@ -28,6 +28,11 @@ const staffSchema = new mongoose.Schema({
     joiningDate: {
     type: Date,
     default: Date.now
+},
+phone: {
+    type: String,
+    required: true,
+    trim: true
 }
 },
 {

@@ -4,6 +4,8 @@ import '../style/mediaqueries.css';
 import logo1 from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { FiMenu } from "react-icons/fi";
+
 import app from "../AdminApp";
 import {
     FaHome,
@@ -16,6 +18,8 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 function Sidebar() {
+    
+
     const navigate = useNavigate();
     const handleLogout = () => {
   const confirmLogout = window.confirm(
@@ -28,10 +32,15 @@ function Sidebar() {
 };
 
     return (
+ 
+         
+   
+    
         <div className="sidebar">
             
             <h2>Brew Bliss Cafe</h2>
             <img src={logo1} alt="" className="cupimg" />
+            
 
             <ul>
                 <li><FaHome />
@@ -54,6 +63,7 @@ function Sidebar() {
                 <li id="logout" onClick={handleLogout}><FaSignOutAlt /><Link>Logout</Link></li>
             </ul>
         </div>
+        
     );
 }
 export default Sidebar;

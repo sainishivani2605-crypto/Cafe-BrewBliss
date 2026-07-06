@@ -107,7 +107,7 @@
 }
 .dashcard{
     height: 10%;
-    width: 23%;
+    width: 22%;
     padding: 20px;
     border-radius: 15px;
     background-color: white;
@@ -301,3 +301,4 @@ text-align: center;
     align-items: center;
     align-content: center;
 }
+

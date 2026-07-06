@@ -16,7 +16,10 @@ import Review from "./components/Review";
 import Register from "./components/Register";
 import Staff from "./components/Staff";
 import Addorder from "./components/Addorder";
+import Addstaff from "./components/AddStaff";
 
+import Attendance from "./components/Attendance";
+import AddAttendance from "./components/Attendance";
 
 import Home from "../my-app/src/components/Home";
 import Menu from "../my-app/src/components/Menu";
@@ -162,8 +165,14 @@ function App() {
       <Route path="/review" element={<Review />} />
       <Route path="/reply" element={<Reply />} />
       <Route path="/staff" element={<Staff />} />
+<Route path="/attendance" element={<Attendance />} />
+<Route
+    path="/addattendance"
+    element={<AddAttendance />}
+/>
       <Route path="/addorder" element={<Addorder />} />
        <Route path="/add-menu/:id" element={<AddMenu />} />
+          <Route path="/addstaff" element={<Addstaff />} />
      
 <Route path="/addorder/:id" element={<Addorder />} />
 <Route path="/editorder/:id" element={<Addorder />} />

@@ -9,6 +9,7 @@ import cupimg from "../assets/cup2.avif";
 import cup from "../assets/cup.jpg";
 import { GiSandwich } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
+
 import {
     FaShoppingCart,     // Total Orders
     FaRupeeSign,        // Revenue
@@ -24,7 +25,7 @@ import {
 } from "react-icons/fa";
 function AdminDashboard(){
     const [topSelling, setTopSelling] = useState([]);
-
+const [sales, setSales] = useState({});
 
 
     const [dashboard,setDashboard] = useState({
