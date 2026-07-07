@@ -7,7 +7,7 @@ const Order = require("../models/Order");
 const Menu = require("../models/Menu");
 const Review = require("../models/Review");
 const Staff = require("../models/Staff");
-const Order = require("../models/Order");
+// const Order = require("../models/Order");
 
 router.get("/today-sales", auth, adminOnly, async (req, res) => {
     try {
