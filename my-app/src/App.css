@@ -51,9 +51,13 @@ body {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 25px;
+  gap: 18px;
+  align-items:center;
+  flex-wrap:wrap;
 }
-
+.nav-links li{
+  white-space:nowrap;
+}
 .nav-links a {
   color: white;
   text-decoration: none;
@@ -585,4 +589,124 @@ textarea.contact-input {
   .cart-sidebar {
     width: 100%;
   }
+}
+/* =======================================================
+   REVIEW PAGE
+======================================================= */
+
+.review-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.review-container h2 {
+  text-align: center;
+  color: #4b2e2e;
+  margin-bottom: 30px;
+  font-size: 2.2rem;
+}
+
+.review-form {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus {
+  border-color: #6f4e37;
+}
+
+.review-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.review-form button {
+  width: 100%;
+  padding: 12px;
+  background: #6f4e37;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.review-form button:hover {
+  background: #4b2e2e;
+}
+
+.reviews-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.review-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+}
+
+.review-card h3 {
+  color: #4b2e2e;
+  margin-bottom: 8px;
+}
+
+.review-card p:first-of-type {
+  color: #f5a623;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.review-card p:last-of-type {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+  .review-container{
+    padding:15px;
+  }
+
+  .review-container h2{
+    font-size:1.8rem;
+  }
+
+  .review-form{
+    padding:20px;
+  }
+
+  .reviews-list{
+    grid-template-columns:1fr;
+  }
+
 }
